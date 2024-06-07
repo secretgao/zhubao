@@ -61,7 +61,7 @@
             <td align="center" class="td01">{{$info->detection}}</td>
         </tr>
         <tr>
-            <td align="left" class="td03">科属名称</td>
+            <td align="left" class="td03">拉丁名称</td>
             <td class="td02"></td>
             <td align="center" class="td03">{{$info->detection_1}}</td>
         </tr>

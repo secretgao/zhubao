@@ -57,14 +57,12 @@ class ProductController extends Controller
 
 
     public function dataprint($certificate_number){
-        $query = products::query()->where('certificate_number',$certificate_number);
-        $info = $query->first();
-
+        $info = products::query()->where('certificate_number',$certificate_number)->first();
         if  (empty($info)){
             return redirect()->route('product.list')->with('detail', '数据未找到');
         }
         $imagePath = Storage::url($info->image_path);
-        return view('product/print', compact('info','imagePath','qcContent'));
+        return view('product/print', compact('info','imagePath'));
 
     }
 }
