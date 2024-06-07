@@ -1,1 +1,2 @@
-# zhubao
+* php artisan storage:link
+* 
