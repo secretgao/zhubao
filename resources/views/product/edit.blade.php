@@ -126,14 +126,14 @@
 
         $.ajax({
             type: 'POST',
-            url: '/product/update', // 提交到的 URL
+            url:  "{{route('product.update')}}", // 提交到的 URL
             data: formData,
             success: function (response) {
                 // 成功提交后的回调函数
                 console.log(response);
                 if (response.status == 200){
                     layer.msg('编辑成功', {icon:100,time:2000});
-                    window.location.href = {{route('product.list')}};
+                    window.location.href = "{{route('product.list')}}";
                 } else {
                     layer.msg('编辑失敗：'+response.msg, {icon:100,time:2000});
                 }
