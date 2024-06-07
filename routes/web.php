@@ -30,7 +30,7 @@ Route::prefix('product')->group(function () {
 });
 
 Route::prefix('upload')->group(function () {
-    Route::get('/index', [\App\Http\Controllers\UploadController::class, 'index']);
+    Route::get('/index', [\App\Http\Controllers\UploadController::class, 'index'])->name('upload.index');
     Route::post('/upload', [\App\Http\Controllers\UploadController::class, 'upload']);
     Route::post('/file', [\App\Http\Controllers\UploadController::class, 'file']);
 });

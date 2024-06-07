@@ -24,7 +24,7 @@ class ProductController extends Controller
         if ($search){
             $query->where('certificate_number',$search);
         }
-
+        $query->orderby('id','desc');
         $products = $query->paginate(3);
         return view('product/index', compact('products'));
     }

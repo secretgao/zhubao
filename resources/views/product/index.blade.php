@@ -18,7 +18,7 @@
 
 <div class="zsdmin_bar">
     <div class="zsdmin_bar_box">
-        <a href="/upload/index">上传证书</a>
+        <a href="{{route("upload.index")}}">上传证书</a>
         <a href="#" style="background:#900;">管理证书</a>
         <a href="zsdy-bm.html" target="_blank" >打印证书背面</a>
     </div>

@@ -29,11 +29,9 @@
 
            </div>
         <div class="t10">
-            {!! $qrcode !!}
-            <img src="{{$qcurl}}}">
-            <input type="hidden" id="qc" name="qc_content" value="{{ $content }}">
+            <img src="{{$qcurl}}">
+            <input type="hidden" id="qc" name="qc_content" value="{{$qcurl}}">
         </div>
-
 
         <input type="hidden" id="imagePath" name="image_path">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -97,7 +95,7 @@
                 console.log(response);
                 if (response.status == 200){
                     alert('表单提交成功!');
-                    window.location.href = "/product";
+                    window.location.href = "/product/index";
                 } else {
                     alert('表单提交失敗：'+response.msg);
                 }
