@@ -4,6 +4,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>深信国检珠宝检测鉴定中心证书查询</title>
     <link rel="stylesheet" href="{{asset('images/style.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{asset('images/layui/css/layui.css')}}">
+    <script src="{{asset('images/layui/layui.js')}}"></script>
 </head>
 
 <body>
@@ -96,7 +98,10 @@
         </tr>
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
     </table>
-        <button type="submit">保存</button>
+
+        <div class="dyzm">
+            <div class="dyzm1"><button type="submit">保存</button></div>
+        </div>
     </form>
 </div>
 
@@ -121,7 +126,7 @@
 
         $.ajax({
             type: 'POST',
-            url: {{route('product.update')}}, // 提交到的 URL
+            url: '/product/update', // 提交到的 URL
             data: formData,
             success: function (response) {
                 // 成功提交后的回调函数

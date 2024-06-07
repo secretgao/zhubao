@@ -5,6 +5,8 @@
     <title>深信国检珠宝检测鉴定中心</title>
     <link rel="stylesheet" href="{{asset('images/style.css') }}" type="text/css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="{{asset('images/layui/css/layui.css')}}">
+    <script src="{{asset('images/layui/layui.js')}}"></script>
 </head>
 
 <body>
@@ -88,14 +90,14 @@
 
         $.ajax({
             type: 'POST',
-            url: {{route('upload.upload')}}, // 提交到的 URL
+            url: "{{route('upload.upload')}}", //URL
             data: formData,
             success: function (response) {
                 // 成功提交后的回调函数
                 console.log(response);
                 if (response.status == 200){
                     layer.msg('提交成功!', {icon:100,time:2000});
-                    window.location.href = {{route('product.list')}};
+                    window.location.href = "{{route('product.list')}}";
                 } else {
                     layer.msg('提交失敗：'+response.msg, {icon:100,time:2000});
                 }
