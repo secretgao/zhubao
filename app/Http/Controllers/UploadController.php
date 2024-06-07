@@ -37,9 +37,7 @@ class UploadController extends Controller
 
     public function upload(){
 
-
         $requestData = request()->all();
-
         $validator = Validator::make(
             $requestData,
             [
@@ -65,8 +63,7 @@ class UploadController extends Controller
                 'detection_1.required' => '检测结果:[:attribute]必传',
                 'image_path.required' => '上传图片:[:attribute]必传',
                 'qc_content.required' => 'qc:[:attribute]必传',
-            ],
-
+            ]
         );
 
         if ($validator->fails()) {

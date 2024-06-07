@@ -17,19 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-
-//Route::get('/product', [\App\Http\Controllers\ProductController::class, 'index'])->name('product');
-
-//Route::get('/product', [\App\Http\Controllers\ProductController::class, 'index'])->name('product');
-
 Route::prefix('product')->group(function () {
     Route::get('/index', [\App\Http\Controllers\ProductController::class, 'index'])->name('product.list');
     Route::get('/detail/{detail}', [\App\Http\Controllers\ProductController::class, 'detail'])->name('product.detail');
     Route::get('/print/{print}', [\App\Http\Controllers\ProductController::class, 'dataprint'])->name('product.print');
     Route::post('/delete', [\App\Http\Controllers\ProductController::class, 'delete'])->name('product.delete');
-    Route::get('/edit/{edit}', [\App\Http\Controllers\ProductController::class, 'editinfo'])->name('product.edit.info');
-    Route::post('/edit/{edit}', [\App\Http\Controllers\ProductController::class, 'edit'])->name('product.edit');
+    Route::get('/editinfo/{edit}', [\App\Http\Controllers\ProductController::class, 'editinfo'])->name('product.edit.info');
+    Route::post('/update', [\App\Http\Controllers\ProductController::class, 'update'])->name('product.update');
 });
 
 Route::prefix('upload')->group(function () {

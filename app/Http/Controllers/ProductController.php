@@ -14,11 +14,9 @@ class ProductController extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-
     public function index(Request $request){
 
         $search = $request->input('certificate_number');
-
         $query = products::query();
 
         if ($search){
@@ -74,5 +72,46 @@ class ProductController extends Controller
         }
         $imagePath = Storage::url($info->image_path);
         return view('product/edit', compact('info','imagePath'));
+    }
+
+    public function update(Request $request){
+        $requestData = request()->all();
+        $validator = Validator::make(
+            $requestData,
+            [
+                'certificate_number'=>'required',
+                'query_code'=>'required',
+                'declaration_name'=>'required',
+                'product_shape'=>'required',
+                'sample_quality'=>'required',
+                'amplification'=>'required',
+                'detection'=>'required',
+                'detection_1'=>'required',
+                'image_path'=>'required',
+                'qc_content'=>'required',
+            ],
+            [
+                'certificate_number.required' => '证书编号:[:attribute]必传',
+                'query_code.required' => '查询编码:[:attribute]必传',
+                'declaration_name.required' => '申报名称:[:attribute]必传',
+                'product_shape.required' => '产品形状:[:attribute]必传',
+                'sample_quality.required' => '样品质量:[:attribute]必传',
+                'amplification.required' => '放大检测:[:attribute]必传',
+                'detection.required' => '检测结果:[:attribute]必传',
+                'detection_1.required' => '检测结果:[:attribute]必传',
+                'image_path.required' => '上传图片:[:attribute]必传',
+                'qc_content.required' => 'qc:[:attribute]必传',
+            ]
+        );
+
+        if ($validator->fails()) {
+            return response()->json(['status' =>500,'msg'=> $validator->errors()->first()]);
+        }
+        try {
+            $result = products::query()->create($requestData);
+            return response()->json(['status' =>200,'msg'=> $result]);
+        } catch (QueryException $e) {
+            return response()->json(['status' =>500,'msg'=> $e->getMessage()]);
+        }
     }
 }

@@ -121,7 +121,7 @@
 
         $.ajax({
             type: 'POST',
-            url: {{route('product.edit')}}, // 提交到的 URL
+            url: {{route('product.update')}}, // 提交到的 URL
             data: formData,
             success: function (response) {
                 // 成功提交后的回调函数
