@@ -24,6 +24,7 @@
 <div class="cpimg"><img src="{{$imagePath}}" width="300" height="300" /></div>
 
 <div class="sj_bg">
+    <form id="uploadForm">
     <table width="90%" style="margin:0 auto;">
         <tr>
             <td align="left" class="td01">证书编号</td>
@@ -93,8 +94,10 @@
             <td class="td02"></td>
             <td align="center" class="td01">王福珍</td>
         </tr>
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
     </table>
-
+        <button type="submit">保存</button>
+    </form>
 </div>
 
 <table width="100%" border="0" style="padding:20px;">
@@ -108,4 +111,33 @@
 <div style=" height:500px;"></div>
 
 </body>
+
+<script>
+
+    $('#uploadForm').submit(function(e) {
+        e.preventDefault(); // 阻止表单默认提交行为
+
+        var formData = $(this).serialize(); // 序列化表单数据
+
+        $.ajax({
+            type: 'POST',
+            url: {{route('product.edit')}}, // 提交到的 URL
+            data: formData,
+            success: function (response) {
+                // 成功提交后的回调函数
+                console.log(response);
+                if (response.status == 200){
+                    layer.msg('编辑成功', {icon:100,time:2000});
+                    window.location.href = {{route('product.list')}};
+                } else {
+                    layer.msg('编辑失敗：'+response.msg, {icon:100,time:2000});
+                }
+            },
+            error: function () {
+                // 提交出错的回调函数
+                alert('表单提交失败!');
+            }
+        });
+    })
+</script>
 </html>

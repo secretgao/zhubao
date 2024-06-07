@@ -88,16 +88,16 @@
 
         $.ajax({
             type: 'POST',
-            url: '/upload/upload', // 提交到的 URL
+            url: {{route('upload.upload')}}, // 提交到的 URL
             data: formData,
             success: function (response) {
                 // 成功提交后的回调函数
                 console.log(response);
                 if (response.status == 200){
-                    alert('表单提交成功!');
-                    window.location.href = "/product/index";
+                    layer.msg('提交成功!', {icon:100,time:2000});
+                    window.location.href = {{route('product.list')}};
                 } else {
-                    alert('表单提交失敗：'+response.msg);
+                    layer.msg('提交失敗：'+response.msg, {icon:100,time:2000});
                 }
             },
             error: function () {

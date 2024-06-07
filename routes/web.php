@@ -29,11 +29,12 @@ Route::prefix('product')->group(function () {
     Route::get('/print/{print}', [\App\Http\Controllers\ProductController::class, 'dataprint'])->name('product.print');
     Route::post('/delete', [\App\Http\Controllers\ProductController::class, 'delete'])->name('product.delete');
     Route::get('/edit/{edit}', [\App\Http\Controllers\ProductController::class, 'editinfo'])->name('product.edit.info');
+    Route::post('/edit/{edit}', [\App\Http\Controllers\ProductController::class, 'edit'])->name('product.edit');
 });
 
 Route::prefix('upload')->group(function () {
     Route::get('/index', [\App\Http\Controllers\UploadController::class, 'index'])->name('upload.index');
-    Route::post('/upload', [\App\Http\Controllers\UploadController::class, 'upload']);
+    Route::post('/upload', [\App\Http\Controllers\UploadController::class, 'upload'])->name('upload.upload');
     Route::post('/file', [\App\Http\Controllers\UploadController::class, 'file']);
 });
 Route::get('/qc', [\App\Http\Controllers\QrCodeController::class, 'show'])->name('qrcode.show');
