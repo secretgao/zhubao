@@ -21,7 +21,7 @@
             <div class="t7">{{$info->detection}}</div>
             <div class="t8">{{$info->detection_1}}</div>
             <div class="t9"><img src="{{$imagePath}}" /></div>
-            <div class="t10"><img src="{{$qcContent}}" /></div>
+            <div class="t10"><img src="{{$info->qc_content}}" /></div>
         </div>
     @endfor
 </div>

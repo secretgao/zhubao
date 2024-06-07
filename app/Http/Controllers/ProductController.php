@@ -64,9 +64,6 @@ class ProductController extends Controller
             return redirect()->route('product.list')->with('detail', '数据未找到');
         }
         $imagePath = Storage::url($info->image_path);
-        $qcContent = Storage::url($info->qc_content);
-var_dump($info->qc_content);
-var_dump($qcContent);
         return view('product/print', compact('info','imagePath','qcContent'));
 
     }
