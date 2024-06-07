@@ -27,7 +27,8 @@ Route::prefix('product')->group(function () {
     Route::get('/index', [\App\Http\Controllers\ProductController::class, 'index'])->name('product.list');
     Route::get('/detail/{detail}', [\App\Http\Controllers\ProductController::class, 'detail'])->name('product.detail');
     Route::get('/print/{print}', [\App\Http\Controllers\ProductController::class, 'dataprint'])->name('product.print');
-    Route::get('/edit/{edit}', [\App\Http\Controllers\ProductController::class, 'editinfo'])->name('product.edit.info');
+    Route::post('/delete', [\App\Http\Controllers\ProductController::class, 'delete'])->name('product.delete');
+    Route::post('/edit/{edit}', [\App\Http\Controllers\ProductController::class, 'editinfo'])->name('product.edit.info');
 });
 
 Route::prefix('upload')->group(function () {
