@@ -53,7 +53,7 @@
                 <a href="/product/detail/{{$product->certificate_number}}" target="_blank">查看</a>
                 &nbsp;<a href="{{$product->certificate_number}}" target="_blank">修改</a> &nbsp;
                 <a href="javascript:void(0)" class="ajax-link" data-url="{{route('product.delete')}}" data-certificate_number="{{$product->certificate_number}}">删除</a> &nbsp;
-                <a href="zsdy-admin.html" target="_blank">打印</a>
+                <a href="{{route('product.print',['print'=>$product->certificate_number])}}" target="_blank">打印</a>
             </td>
         </tr>
         @endforeach

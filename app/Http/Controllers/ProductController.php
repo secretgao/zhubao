@@ -31,7 +31,6 @@ class ProductController extends Controller
 
 
     public function detail($certificate_number){
-
         $query = products::query()->where('certificate_number',$certificate_number);
         $info = $query->first();
 
@@ -54,5 +53,21 @@ class ProductController extends Controller
             return response()->json(['status'=>200,'msg'=>'刪除成功']);
         }
         return response()->json(['status'=>500,'msg'=>'刪除失败']);
+    }
+
+
+    public function dataprint($certificate_number){
+        $query = products::query()->where('certificate_number',$certificate_number);
+        $info = $query->first();
+
+        if  (empty($info)){
+            return redirect()->route('product.list')->with('detail', '数据未找到');
+        }
+        $imagePath = Storage::url($info->image_path);
+        $qcContent = Storage::url($info->qc_content);
+var_dump($info->qc_content);
+var_dump($qcContent);
+        return view('product/print', compact('info','imagePath','qcContent'));
+
     }
 }

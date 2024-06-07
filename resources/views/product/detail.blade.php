@@ -58,12 +58,12 @@
         <tr>
             <td align="left" class="td01">检测结果</td>
             <td class="td02"></td>
-            <td align="center" class="td01">{{$info->detection}}{{$info->detection_1}}</td>
+            <td align="center" class="td01">{{$info->detection}}</td>
         </tr>
         <tr>
             <td align="left" class="td03">科属名称</td>
             <td class="td02"></td>
-            <td align="center" class="td03">{{$info->query_code}}</td>
+            <td align="center" class="td03">{{$info->detection_1}}</td>
         </tr>
         <tr>
             <td align="left" class="td01">执行标准</td>

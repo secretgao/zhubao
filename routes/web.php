@@ -26,6 +26,7 @@ Route::get('/', function () {
 Route::prefix('product')->group(function () {
     Route::get('/index', [\App\Http\Controllers\ProductController::class, 'index'])->name('product.list');
     Route::get('/detail/{detail}', [\App\Http\Controllers\ProductController::class, 'detail'])->name('product.detail');
+    Route::get('/print/{print}', [\App\Http\Controllers\ProductController::class, 'dataprint'])->name('product.print');
     Route::post('/delete', [\App\Http\Controllers\ProductController::class, 'delete'])->name('product.delete');
 });
 
