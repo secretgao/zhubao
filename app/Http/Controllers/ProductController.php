@@ -63,6 +63,16 @@ class ProductController extends Controller
         }
         $imagePath = Storage::url($info->image_path);
         return view('product/print', compact('info','imagePath'));
+    }
 
+    public function editinfo($certificate_number){
+        $query = products::query()->where('certificate_number',$certificate_number);
+        $info = $query->first();
+
+        if  (empty($info)){
+            return redirect()->route('product.list')->with('detail', '数据未找到');
+        }
+        $imagePath = Storage::url($info->image_path);
+        return view('product/edit', compact('info','imagePath'));
     }
 }

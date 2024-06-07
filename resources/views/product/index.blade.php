@@ -51,7 +51,7 @@
             <td align="center" valign="middle">{{$product->created_at}}</td>
             <td align="center" valign="middle">
                 <a href="/product/detail/{{$product->certificate_number}}" target="_blank">查看</a>
-                &nbsp;<a href="{{$product->certificate_number}}" target="_blank">修改</a> &nbsp;
+                &nbsp;<a href="{{route('product.edit.info',['edit'=>$product->certificate_number])}}" >修改</a> &nbsp;
                 <a href="javascript:void(0)" class="ajax-link" data-url="{{route('product.delete')}}" data-certificate_number="{{$product->certificate_number}}">删除</a> &nbsp;
                 <a href="{{route('product.print',['print'=>$product->certificate_number])}}" target="_blank">打印</a>
             </td>
@@ -61,7 +61,10 @@
     </table>
 
     <div class="yecode"><a href="#">全选</a>&nbsp; <a href="#">删除</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">下一页</a>&nbsp;&nbsp;&nbsp; <a href="#">上一页</a> &nbsp;&nbsp;&nbsp;跳转至&nbsp;<input class="yeipt" type="text" />&nbsp;页</div>
-    {{ $products->links()}}
+
+    <div class="d-flex justify-content-center">
+        {{ $products->links()}}
+    </div>
 </div>
 @if(!empty(session('detail')))
     <script>
