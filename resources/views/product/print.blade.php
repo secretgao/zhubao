@@ -9,7 +9,7 @@
 <body>
 
 <div class="zsmbdy">
-    @for ($i = 0; $i <=8; $i++)
+    @for ($i = 0; $i <8; $i++)
         <div class="zsmbdy-box zzz_{{$i}}" >
 
             <div class="t1">{{$info->certificate_number}}</div>
