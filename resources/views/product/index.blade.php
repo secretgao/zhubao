@@ -65,8 +65,8 @@
     <div class="yecode">
         <a href="javascript:void(0)" id="select-all">全选</a>&nbsp;
         <input name="select-all-certificate_number"  type="hidden" value="">
-        <a href="javascript:void(0)" id="select-all-print" data-certificate_number="">打印已勾选的证书</a>&nbsp;
-        <a href="javascript:void(0)"  id="select-all-delete" data-certificate_number="">删除</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="javascript:void(0)" id="select-all-print">打印已勾选的证书</a>&nbsp;
+        <a href="javascript:void(0)"  id="select-all-delete" >删除</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
     <div class="d-flex justify-content-center">
         {{ $products->links('vendor.pagination.bootstrap-4')}}
@@ -135,14 +135,14 @@
         });
 
 
-        $('select-all-delete').on('click', function(e) {
+        $('#select-all-delete').on('click', function(e) {
             e.preventDefault(); // 阻止默认行为
             var certificate_number =  $(this).data('certificate_number'); // 获取 URL
             if (certificate_number == ''){
                 layer.msg('请先选择要删除的数据', {icon:100,time:2000});
             }
             $.ajax({
-                url: url,
+                url: "{{route('product.deleteall')}}",
                 method: 'POST', // 或 'POST'，根据你的需求
                 data: {
                     certificate_number: certificate_number,
@@ -165,10 +165,25 @@
             });
         });
 
-
+        $('#select-all-print').on('click', function(e) {
+            e.preventDefault(); // 阻止默认行为
+            var certificate_number =   $('.yecode input[name="select-all-certificate_number"]').val(); // 获取 选中的值
+            if (certificate_number == ''){
+                layer.msg('请先选择要删除的数据', {icon:100,time:2000});
+            }
+            // 通过逗号分隔值
+            let valuesArray = certificate_number.split(',');
+            // 创建新窗口内容
+            for (let value of valuesArray) {
+              var  url = '/product/print/'+ value; //
+                console.log(url)
+                window.open(url)
+            }
+        });
         function fuzhiduoxuan(selectedValues) {
          $('.yecode input[name="select-all-certificate_number"]').val(selectedValues);
         }
+
     });
 </script>
 </html>
