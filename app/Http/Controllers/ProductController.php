@@ -9,7 +9,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\Validator;
 class ProductController extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -87,8 +87,8 @@ class ProductController extends Controller
                 'amplification'=>'required',
                 'detection'=>'required',
                 'detection_1'=>'required',
-                'image_path'=>'required',
-                'qc_content'=>'required',
+             //   'image_path'=>'required',
+              //  'qc_content'=>'required',
             ],
             [
                 'certificate_number.required' => '证书编号:[:attribute]必传',
@@ -99,8 +99,8 @@ class ProductController extends Controller
                 'amplification.required' => '放大检测:[:attribute]必传',
                 'detection.required' => '检测结果:[:attribute]必传',
                 'detection_1.required' => '检测结果:[:attribute]必传',
-                'image_path.required' => '上传图片:[:attribute]必传',
-                'qc_content.required' => 'qc:[:attribute]必传',
+             //   'image_path.required' => '上传图片:[:attribute]必传',
+              //  'qc_content.required' => 'qc:[:attribute]必传',
             ]
         );
 
@@ -108,7 +108,8 @@ class ProductController extends Controller
             return response()->json(['status' =>500,'msg'=> $validator->errors()->first()]);
         }
         try {
-            $result = products::query()->create($requestData);
+            unset($requestData['_token']);
+            $result = products::query()->where('certificate_number',$requestData['certificate_number'])->update($requestData);
             return response()->json(['status' =>200,'msg'=> $result]);
         } catch (QueryException $e) {
             return response()->json(['status' =>500,'msg'=> $e->getMessage()]);

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{asset('images/style.css') }}" type="text/css">
     <link rel="stylesheet" href="{{asset('images/layui/css/layui.css')}}">
     <script src="{{asset('images/layui/layui.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -38,6 +39,7 @@
             <td align="left" class="td03">查询编码</td>
             <td class="td02"></td>
             <td align="center" class="td03">{{$info->query_code}}</td>
+            <input type="hidden" name="query_code" value="{{$info->query_code}}">
         </tr>
         <tr>
             <td align="left" class="td01">申报名称</td>
