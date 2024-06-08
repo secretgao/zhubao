@@ -22,8 +22,10 @@ Route::prefix('product')->group(function () {
     Route::get('/detail/{detail}', [\App\Http\Controllers\ProductController::class, 'detail'])->name('product.detail');
     Route::get('/print/{print}', [\App\Http\Controllers\ProductController::class, 'dataprint'])->name('product.print');
     Route::post('/delete', [\App\Http\Controllers\ProductController::class, 'delete'])->name('product.delete');
+    Route::post('/deleteall', [\App\Http\Controllers\ProductController::class, 'deleteall'])->name('product.deleteall');
     Route::get('/editinfo/{edit}', [\App\Http\Controllers\ProductController::class, 'editinfo'])->name('product.edit.info');
     Route::post('/update', [\App\Http\Controllers\ProductController::class, 'update'])->name('product.update');
+
 });
 
 Route::prefix('upload')->group(function () {

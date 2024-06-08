@@ -45,7 +45,9 @@
 
         @foreach ($products as $product)
         <tr>
-            <td align="center" valign="middle"><input name="name01" type="checkbox" value="{{$product->certificate_number}}" /></td>
+            <td align="center" valign="middle">
+                <input name="certificate_number[]" type="checkbox" class="item-checkbox"  value="{{$product->certificate_number}}" />
+            </td>
             <td align="center" valign="middle">{{$product->certificate_number}}</td>
             <td align="center" valign="middle">{{$product->query_code}}</td>
             <td align="center" valign="middle">{{$product->created_at}}</td>
@@ -60,10 +62,14 @@
 
     </table>
 
-    <div class="yecode"><a href="#">全选</a>&nbsp; <a href="#">删除</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">下一页</a>&nbsp;&nbsp;&nbsp; <a href="#">上一页</a> &nbsp;&nbsp;&nbsp;跳转至&nbsp;<input class="yeipt" type="text" />&nbsp;页</div>
+    <div class="yecode">
+        <a href="javascript:void(0)" id="select-all">全选</a>&nbsp;
+        <input name="select-all-certificate_number"  type="hidden" value="">
+        <a href="javascript:void(0)" id="select-all-print" data-certificate_number="">打印已勾选的证书</a>&nbsp;
+        <a href="javascript:void(0)"  id="select-all-delete" data-certificate_number="">删除</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
     <div class="d-flex justify-content-center">
-        {{ $products->links()}}
+        {{ $products->links('vendor.pagination.bootstrap-4')}}
     </div>
 </div>
 @if(!empty(session('detail')))
@@ -75,9 +81,33 @@
 
 <script>
     $(document).ready(function() {
+
+        let allSelected = false;
+        $('#select-all').click(function(e) {
+            e.preventDefault();
+            allSelected = !allSelected;
+            $('.item-checkbox').prop('checked', allSelected);
+            let selectedValues  = [];
+
+            $('.item-checkbox:checked').each(function() {
+                selectedValues.push($(this).val());
+            });
+            fuzhiduoxuan(selectedValues.join(","));
+        });
+
+        $('.item-checkbox').click(function() {
+            allSelected = this.checked;
+            $(this).prop('checked', allSelected);
+            let selectedValues  = [];
+
+            $('.item-checkbox:checked').each(function() {
+                selectedValues.push($(this).val());
+            });
+            fuzhiduoxuan(selectedValues.join(","));
+        });
+
         $('.ajax-link').on('click', function(e) {
             e.preventDefault(); // 阻止默认行为
-
             var url = $(this).data('url'); // 获取 URL
             var certificate_number =  $(this).data('certificate_number'); // 获取 URL
             $.ajax({
@@ -103,6 +133,42 @@
                 }
             });
         });
+
+
+        $('select-all-delete').on('click', function(e) {
+            e.preventDefault(); // 阻止默认行为
+            var certificate_number =  $(this).data('certificate_number'); // 获取 URL
+            if (certificate_number == ''){
+                layer.msg('请先选择要删除的数据', {icon:100,time:2000});
+            }
+            $.ajax({
+                url: url,
+                method: 'POST', // 或 'POST'，根据你的需求
+                data: {
+                    certificate_number: certificate_number,
+                    _token: '{{ csrf_token() }}' // Laravel CSRF 保护
+                },
+                success: function(response) {
+                    if (response.status== 200){
+                        // 处理成功响应
+                        layer.msg(response.msg, {icon:100,time:2000});
+                        location.reload();    // 重新加载当前页面
+                    } else {
+                        layer.msg(response.msg, {icon:70,time:2000});
+                    }
+                },
+                error: function(xhr) {
+                    // 处理错误响应
+                    layer.msg('请求失败', {icon: 2});
+                    console.log(xhr.responseText);
+                }
+            });
+        });
+
+
+        function fuzhiduoxuan(selectedValues) {
+         $('.yecode input[name="select-all-certificate_number"]').val(selectedValues);
+        }
     });
 </script>
 </html>

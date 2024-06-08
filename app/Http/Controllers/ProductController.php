@@ -52,7 +52,15 @@ class ProductController extends Controller
         }
         return response()->json(['status'=>500,'msg'=>'刪除失败']);
     }
-
+    public function deleteall(Request $request){
+        $certificate_number = $request->input('certificate_number');
+        return response()->json(['status'=>200,'msg'=>'刪除成功']);
+        $info = products::query()->whereIn('certificate_number',$certificate_number)->delete();
+        if ($info){
+            return response()->json(['status'=>200,'msg'=>'刪除成功']);
+        }
+        return response()->json(['status'=>500,'msg'=>'刪除失败']);
+    }
 
     public function dataprint($certificate_number){
         $info = products::query()->where('certificate_number',$certificate_number)->first();
