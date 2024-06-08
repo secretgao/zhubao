@@ -179,6 +179,7 @@
                 console.log(url)
                 window.open(url)
             }
+
         });
         function fuzhiduoxuan(selectedValues) {
          $('.yecode input[name="select-all-certificate_number"]').val(selectedValues);
