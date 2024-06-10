@@ -229,7 +229,7 @@
                 console.log(response);
                 if (response.status == 200){
                     layer.msg('查询成功!', {icon:100,time:2000});
-                    window.location.href = "{{route('product.list')}}";
+                    window.location.href = "{{route('home.search.result')}}"+'?certificate_number='+response.data;
                 } else {
                     layer.msg('查询失敗：'+response.msg, {icon:100,time:2000});
                 }

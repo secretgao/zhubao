@@ -74,6 +74,6 @@ class HomeController extends Controller
         if (empty($info)){
             return response()->json(['status' =>500,'msg'=> '证书编号不存在']);
         }
-        return response()->json(['status' =>200,'msg'=> '请输入证书编号','data'=>$info]);
+        return response()->json(['status' =>200,'msg'=> '请输入证书编号','data'=>$request->input('certificate_number')]);
     }
 }

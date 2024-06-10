@@ -131,9 +131,9 @@
 </font>
 <div id="banner_tabs" class="flexslider">
     <ul class="slides">
-        <li style="position: absolute; left: 0px; top: 0px; display: list-item;"> <font face="微软雅黑"><a href="#"> <img width="100%" height="350" style="background: url(images/1-161125133Z1117.jpg) no-repeat center;" src="images/alpha.png"> </a> </font> </li>
-        <li style="position: absolute; left: 0px; top: 0px; display: none;"> <font face="微软雅黑"><a href="#"> <img width="100%" height="350" style="background: url(images/1-161124164606219.png) no-repeat center;" src="images/alpha.png"> </a> </font> </li>
-        <li style="position: absolute; left: 0px; top: 0px; display: none;"> <font face="微软雅黑"><a href="#"> <img width="100%" height="350" style="background: url(images/1-161124164155518.png) no-repeat center;" src="images/alpha.png"> </a> </font> </li>
+        <li style="position: absolute; left: 0px; top: 0px; display: list-item;"> <font face="微软雅黑"><a href="#"> <img width="100%" height="350" style="background: url(images/1-161125133Z1117.jpg) no-repeat center;" src="{{asset('images/alpha.png')}}"> </a> </font> </li>
+        <li style="position: absolute; left: 0px; top: 0px; display: none;"> <font face="微软雅黑"><a href="#"> <img width="100%" height="350" style="background: url(images/1-161124164606219.png) no-repeat center;" src="{{asset('images/alpha.png')}}"> </a> </font> </li>
+        <li style="position: absolute; left: 0px; top: 0px; display: none;"> <font face="微软雅黑"><a href="#"> <img width="100%" height="350" style="background: url(images/1-161124164155518.png) no-repeat center;" src="{{asset('images/alpha.png')}}"> </a> </font> </li>
     </ul>
     <ul class="flex-direction-nav">
         <li><font face="微软雅黑"></font></li>
@@ -141,8 +141,8 @@
     </ul>
 </div>
 <font face="微软雅黑">
-    <script src="images/jquery-1.10.2.min.js"></script>
-    <script src="images/slider.js"></script>
+    <script src="{{asset('images/jquery-1.10.2.min.js')}}"></script>
+    <script src="{{asset('images/slider.js')}}"></script>
     <script type="text/javascript">
         $(function() {
             var bannerSlider = new Slider($('#banner_tabs'), {
@@ -173,7 +173,7 @@
 
         <table width="800" border="0" style="padding:50px; font-size:24px;">
             <tr>
-                <td><a href="#"  style="font-size:24px;">S69321</a></td>
+                <td><a href=""  style="font-size:24px;">S69321</a></td>
             </tr>
         </table>
 
