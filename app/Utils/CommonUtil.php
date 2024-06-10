@@ -12,6 +12,8 @@ namespace App\Utils;
 
 
 
+use App\Models\products;
+
 class CommonUtil
 {
 
@@ -22,7 +24,9 @@ class CommonUtil
      */
     public static function generateCertificateNumber(){
 
-        return 'A'.date('YmdHis');
+        $start = 'A0100';
+        $total = products::query()->count();
+        return $start.$total;
     }
 
     /**
@@ -30,7 +34,9 @@ class CommonUtil
      * 生成查询编码
      */
     public static function generateQueryCode(){
-        return 'S'.time();
+        $start = 'S02008';
+        $total = products::query()->count();
+        return $start.$total;
     }
 
 
