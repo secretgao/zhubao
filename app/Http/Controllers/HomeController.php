@@ -10,131 +10,32 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-class ProductController extends Controller
+class HomeController extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function index(Request $request){
 
-        $search = $request->input('certificate_number');
-        $query = products::query();
-
-        if ($search){
-            $query->where('certificate_number',$search);
-        }
-        $query->orderby('id','desc');
-        $products = $query->paginate(3);
-        return view('product/index', compact('products'));
+        return view('home/index');
     }
 
 
     public function detail($certificate_number){
-        $query = products::query()->where('certificate_number',$certificate_number);
-        $info = $query->first();
 
-        if  (empty($info)){
-            return redirect()->route('product.list')->with('detail', '数据未找到');
-        }
-        $imagePath = Storage::url($info->image_path);
         return view('product/detail', compact('info','imagePath'));
     }
 
 
     public function delete(Request $request){
-        $certificate_number = $request->input('certificate_number');
-        return response()->json(['status'=>200,'msg'=>'刪除成功']);
-        $info = products::query()->where('certificate_number',$certificate_number)->first();
-        if (empty($info)){
-            return response()->json(['status'=>500,'msg'=>'数据不存在或参数错误']);
-        }
-        if ($info->delete()){
-            return response()->json(['status'=>200,'msg'=>'刪除成功']);
-        }
-        return response()->json(['status'=>500,'msg'=>'刪除失败']);
+
     }
     public function deleteall(Request $request){
-        $certificate_number = $request->input('certificate_number');
-        return response()->json(['status'=>200,'msg'=>'刪除成功']);
-        $info = products::query()->whereIn('certificate_number',$certificate_number)->delete();
-        if ($info){
-            return response()->json(['status'=>200,'msg'=>'刪除成功']);
-        }
-        return response()->json(['status'=>500,'msg'=>'刪除失败']);
+
     }
 
     public function dataprint($certificate_number){
-        $info = products::query()->where('certificate_number',$certificate_number)->first();
-        if  (empty($info)){
-            return redirect()->route('product.list')->with('detail', '数据未找到');
-        }
-        $imagePath = Storage::url($info->image_path);
-        return view('product/print', compact('info','imagePath'));
+
     }
 
-    public function editinfo($certificate_number){
-        $query = products::query()->where('certificate_number',$certificate_number);
-        $info = $query->first();
 
-        if  (empty($info)){
-            return redirect()->route('product.list')->with('detail', '数据未找到');
-        }
-        $imagePath = Storage::url($info->image_path);
-        return view('product/edit', compact('info','imagePath'));
-    }
-
-    public function update(Request $request){
-        $requestData = request()->all();
-        $validator = Validator::make(
-            $requestData,
-            [
-                'certificate_number'=>'required',
-               // 'query_code'=>'required',
-                'declaration_name'=>'required',
-                'product_shape'=>'required',
-                'sample_quality'=>'required',
-                'amplification'=>'required',
-                'detection'=>'required',
-                'detection_1'=>'required',
-                'image_path'=>'required',
-              //  'qc_content'=>'required',
-            ],
-            [
-                'certificate_number.required' => '证书编号:[:attribute]必传',
-              //  'query_code.required' => '查询编码:[:attribute]必传',
-                'declaration_name.required' => '申报名称:[:attribute]必传',
-                'product_shape.required' => '产品形状:[:attribute]必传',
-                'sample_quality.required' => '样品质量:[:attribute]必传',
-                'amplification.required' => '放大检测:[:attribute]必传',
-                'detection.required' => '检测结果:[:attribute]必传',
-                'detection_1.required' => '检测结果:[:attribute]必传',
-                'image_path.required' => '上传图片:[:attribute]必传',
-              //  'qc_content.required' => 'qc:[:attribute]必传',
-            ]
-        );
-
-        if ($validator->fails()) {
-            return response()->json(['status' =>500,'msg'=> $validator->errors()->first()]);
-        }
-        try {
-            unset($requestData['_token']);
-            $result = products::query()->where('certificate_number',$requestData['certificate_number'])->update($requestData);
-            return response()->json(['status' =>200,'msg'=> $result]);
-        } catch (QueryException $e) {
-            return response()->json(['status' =>500,'msg'=> $e->getMessage()]);
-        }
-    }
-
-    public function dataprintall(Request $request){
-        $certificate_number = $request->get('certificate_number');
-
-        $certificate_number_arr = explode(',',$certificate_number);
-        $products = products::query()->whereIn('certificate_number',$certificate_number_arr)->get();
-        if  (empty($products)){
-            return redirect()->route('product.list')->with('detail', '数据未找到');
-        }
-        foreach ($products as $item){
-            $item->image_path = Storage::url($item->image_path);
-        }
-        return view('product/printall', compact('products'));
-    }
 }
