@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
 Route::get('/intro', [\App\Http\Controllers\HomeController::class, 'intro'])->name('home.intro');
 Route::get('/service', [\App\Http\Controllers\HomeController::class, 'service'])->name('home.service');
+Route::get('/jew', [\App\Http\Controllers\HomeController::class, 'jew'])->name('home.jew');
 
 Route::prefix('product')->group(function () {
     Route::get('/index', [\App\Http\Controllers\ProductController::class, 'index'])->name('product.list');

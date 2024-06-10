@@ -27,6 +27,10 @@ class HomeController extends Controller
     public function service(){
         return view('home/service');
     }
+
+    public function jew(){
+        return view('home/jew');
+    }
     public function deleteall(Request $request){
 
     }
