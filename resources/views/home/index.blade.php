@@ -173,18 +173,19 @@
                 <td valign=top style="border: 1px solid #EFEFEF; padding: 4px"><form id="form1" method="post" name="frm_Query">
                         <table border=0 style="border-collapse: collapse" bordercolor="#B5B5B5" height="141" width="231">
                             <tr>
-                                <td height="31" style="padding: 4px"><span class="zs" style=" line-height:30px;"><b>&nbsp;<a name="Query"></a>证书编号：</b></span>
+                                <td height="31" style="padding: 4px"><span class="zs" style=" line-height:30px;"><b>&nbsp;<a name="query"></a>证书编号：</b></span>
                                     <input type="text" id="txtNo" name="TestNo" style="padding: 2px" size="25" />
                                     <br /></td>
                             </tr>
                             <tr>
-                                <td height="31" style="padding: 4px"><span class="zs" style=" line-height:30px;"><b>&nbsp;<a name="Query"></a>验证码：</b></span>
+                                <td height="31" style="padding: 4px"><span class="zs" style=" line-height:30px;"><b>&nbsp;<a name="verify_code"></a>验证码：</b></span>
                                     <input type="text" id="txtNo" name="TestNo" style="padding: 2px" size="4" />
                                     <img src="{{ url('captcha') }}" />
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <br /></td>
                             </tr>
                             <tr>
-                                <td height="36" style="padding: 4px"><input type="button" onclick="mygo2()" id="cert_query" value="证书查询" style="padding: 4px" /></td>
+                                <td height="36" style="padding: 4px"><input type="button"  id="cert_query" value="证书查询" style="padding: 4px" /></td>
                             </tr>
                         </table>
                     </form></td>
@@ -201,17 +202,32 @@
     </div>
 </div>
 <script language="javascript">
-    function mygo1()
-    {
-        var strNo = document.getElementById("txtNo").value + "new";
-        window.location="result.htm?" + strNo;
-    }
 
-    function mygo2()
-    {
-        var strNo = document.getElementById("txtNo").value;
-        window.location="result.htm?" + strNo;
-    }
+
+    $('#form1').submit(function(e) {
+        e.preventDefault(); // 阻止表单默认提交行为
+
+        var formData = $(this).serialize(); // 序列化表单数据
+        $.ajax({
+            type: 'POST',
+            url: "{{route('home.search')}}", //URL
+            data: formData,
+            success: function (response) {
+                // 成功提交后的回调函数
+                console.log(response);
+                if (response.status == 200){
+                    layer.msg('提交成功!', {icon:100,time:2000});
+                    window.location.href = "{{route('product.list')}}";
+                } else {
+                    layer.msg('提交失敗：'+response.msg, {icon:100,time:2000});
+                }
+            },
+            error: function () {
+                // 提交出错的回调函数
+                alert('表单提交失败!');
+            }
+        });
+    })
 </script>
 </body>
 </html>

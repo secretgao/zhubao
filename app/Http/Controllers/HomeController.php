@@ -36,7 +36,7 @@ class HomeController extends Controller
     public function jew(){
         return view('home/jew');
     }
-    public function job(Request $request){
+    public function job(){
         return view('home/job');
     }
 
@@ -47,13 +47,18 @@ class HomeController extends Controller
         return view('home/about');
     }
 
-    function generateCaptcha() {
+    public function generateCaptcha() {
         $builder = new CaptchaBuilder;
         $builder->build();
         // 将字符串保存到session中
         Session::put('captcha', $builder->getPhrase());
 
         // 将生成的图片输出到浏览器
-        return response($builder->output())->header('Content-type','image/jpeg'); }
+        return response($builder->output())->header('Content-type','image/jpeg');
+    }
 
+    public function search(Request $request){
+
+        var_dump($request->all());
+    }
 }
