@@ -4,6 +4,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>深信国检珠宝检测鉴定中心</title>
     <link rel="stylesheet" href="{{asset('images/style.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('images/layui/css/layui.css')}}">
+    <script src="{{asset('images/layui/layui.js')}}"></script>
 </head>
 
 <body>
@@ -174,18 +176,18 @@
                         <table border=0 style="border-collapse: collapse" bordercolor="#B5B5B5" height="141" width="231">
                             <tr>
                                 <td height="31" style="padding: 4px"><span class="zs" style=" line-height:30px;"><b>&nbsp;<a name="query"></a>证书编号：</b></span>
-                                    <input type="text" id="txtNo" name="TestNo" style="padding: 2px" size="25" />
+                                    <input type="text" id="txtNo" name="query" style="padding: 2px" size="25" />
                                     <br /></td>
                             </tr>
                             <tr>
                                 <td height="31" style="padding: 4px"><span class="zs" style=" line-height:30px;"><b>&nbsp;<a name="verify_code"></a>验证码：</b></span>
-                                    <input type="text" id="txtNo" name="TestNo" style="padding: 2px" size="4" />
-                                    <img src="{{ url('captcha') }}" />
+                                    <input type="text" id="txtNo" name="verify_code" style="padding: 2px" size="4" />
+                                    <img src="{{ url('captcha') }}"  onclick="this.src='{{ url('captcha') }}?'+Math.random()"/>
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <br /></td>
                             </tr>
                             <tr>
-                                <td height="36" style="padding: 4px"><input type="button"  id="cert_query" value="证书查询" style="padding: 4px" /></td>
+                                <td height="36" style="padding: 4px"><input type="button" onclick="mygo2()"  id="cert_query" value="证书查询" style="padding: 4px" /></td>
                             </tr>
                         </table>
                     </form></td>
@@ -203,31 +205,42 @@
 </div>
 <script language="javascript">
 
+    function mygo2()
+    {
+        var formData = new FormData();
+        var token = $('#form1 input[name="_token"]').val();
+        var certificate_number = $('#form1 input[name="query"]').val();
+        var verify_code = $('#form1 input[name="verify_code"]').val();
+        if (certificate_number == ''){
+            layer.msg('请输入证书编号', {icon:100,time:2000});
+            return;
+        }
+        if (verify_code == ''){
+            layer.msg('请输入验证码', {icon:100,time:2000});
+            return;
+        }
 
-    $('#form1').submit(function(e) {
-        e.preventDefault(); // 阻止表单默认提交行为
-
-        var formData = $(this).serialize(); // 序列化表单数据
         $.ajax({
             type: 'POST',
             url: "{{route('home.search')}}", //URL
-            data: formData,
+            data: {certificate_number:certificate_number,verify_code:verify_code,_token:token},
             success: function (response) {
                 // 成功提交后的回调函数
                 console.log(response);
                 if (response.status == 200){
-                    layer.msg('提交成功!', {icon:100,time:2000});
+                    layer.msg('查询成功!', {icon:100,time:2000});
                     window.location.href = "{{route('product.list')}}";
                 } else {
-                    layer.msg('提交失敗：'+response.msg, {icon:100,time:2000});
+                    layer.msg('查询失敗：'+response.msg, {icon:100,time:2000});
                 }
             },
             error: function () {
                 // 提交出错的回调函数
-                alert('表单提交失败!');
+                alert('查询失败!');
             }
         });
-    })
+    }
+
 </script>
 </body>
 </html>

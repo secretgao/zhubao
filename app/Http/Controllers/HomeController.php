@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\products;
 use Facade\FlareClient\Http\Response;
 use Gregwar\Captcha\PhraseBuilder;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -59,6 +60,20 @@ class HomeController extends Controller
 
     public function search(Request $request){
 
-        var_dump($request->all());
+        if (empty($request->input('verify_code'))){
+            return response()->json(['status' =>500,'msg'=> '请输入验证码']);
+        }
+        if (Session::get('captcha') != $request->input('verify_code')) {
+            return response()->json(['status' =>500,'msg'=> '验证码输入错误']);
+        }
+        if (empty($request->input('certificate_number'))){
+            return response()->json(['status' =>500,'msg'=> '请输入证书编号']);
+        }
+        $info = products::query()->where('certificate_number',$request->input('certificate_number'))->first();
+
+        if (empty($info)){
+            return response()->json(['status' =>500,'msg'=> '证书编号不存在']);
+        }
+        return response()->json(['status' =>200,'msg'=> '请输入证书编号','data'=>$info]);
     }
 }

@@ -21,7 +21,7 @@ Route::get('/job', [\App\Http\Controllers\HomeController::class, 'job'])->name('
 Route::get('/advice', [\App\Http\Controllers\HomeController::class, 'advice'])->name('home.advice');
 Route::get('/about', [\App\Http\Controllers\HomeController::class, 'about'])->name('home.about');
 Route::get('/captcha', [\App\Http\Controllers\HomeController::class, 'generateCaptcha'])->name('home.captcha');
-Route::get('/search', [\App\Http\Controllers\HomeController::class, 'search'])->name('home.search');
+Route::post('/search', [\App\Http\Controllers\HomeController::class, 'search'])->name('home.search');
 
 
 Route::prefix('product')->group(function () {
