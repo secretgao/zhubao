@@ -24,7 +24,7 @@ class CommonUtil
      */
     public static function generateCertificateNumber(){
 
-        $start = 'A0100';
+        $start = 'S02008';
         $total = products::query()->count();
         return $start.$total;
     }
@@ -34,7 +34,8 @@ class CommonUtil
      * 生成查询编码
      */
     public static function generateQueryCode(){
-        $start = 'S02008';
+
+        $start = 'A0100';
         $total = products::query()->count();
         return $start.$total;
     }
