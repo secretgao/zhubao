@@ -22,8 +22,8 @@
 <div class="menuBg">
     <div class="menuBox">
         <ul class="menu">
-            <li class="menuLi"><font face="微软雅黑"><a class="menu_a" href="index.html">首页</a></font></li>
-            <li class="menuLi"><font face="微软雅黑"><a class="menu_a" href="intro.html">中心简介</a></font></li>
+            <li class="menuLi"><font face="微软雅黑"><a class="menu_a" href="/">首页</a></font></li>
+            <li class="menuLi"><font face="微软雅黑"><a class="menu_a" href="/intro">中心简介</a></font></li>
             <li class="menuLi"><font face="微软雅黑"><a class="menu_a" href="service.html">服务指南</a></font></li>
             <li class="menuLi"><font face="微软雅黑"><a class="menu_a" href="jew.html">珠宝常识</a></font></li>
             <li class="menuLi"><font face="微软雅黑"><a class="menu_a" href="job.html">人才招聘</a></font></li>

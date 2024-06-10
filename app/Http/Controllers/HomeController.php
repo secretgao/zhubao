@@ -20,9 +20,9 @@ class HomeController extends Controller
     }
 
 
-    public function detail($certificate_number){
+    public function intro($certificate_number){
 
-        return view('product/detail', compact('info','imagePath'));
+        return view('home/intro');
     }
 
 
