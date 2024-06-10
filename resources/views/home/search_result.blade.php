@@ -15,7 +15,7 @@
     </div>
 </div>
 <div class="logoBg">
-    <div class="logoBox"> <font face="微软雅黑"> <a class="logo" href="#" style="background: url(images/topimg2.png) no-repeat 0 0;
+    <div class="logoBox"> <font face="微软雅黑"> <a class="logo" href="#" style="background: url({{asset('images/topimg2.png')}}) no-repeat 0 0;
     text-indent: -999px;
     overflow: hidden;"></a> </font>
         <div class="biaozhi"><font face="微软雅黑"><img src="{{asset('images/midimg.png')}}" width="463" height="115" alt=""></font></div>
@@ -131,9 +131,9 @@
 </font>
 <div id="banner_tabs" class="flexslider">
     <ul class="slides">
-        <li style="position: absolute; left: 0px; top: 0px; display: list-item;"> <font face="微软雅黑"><a href="#"> <img width="100%" height="350" style="background: url(images/1-161125133Z1117.jpg) no-repeat center;" src="{{asset('images/alpha.png')}}"> </a> </font> </li>
-        <li style="position: absolute; left: 0px; top: 0px; display: none;"> <font face="微软雅黑"><a href="#"> <img width="100%" height="350" style="background: url(images/1-161124164606219.png) no-repeat center;" src="{{asset('images/alpha.png')}}"> </a> </font> </li>
-        <li style="position: absolute; left: 0px; top: 0px; display: none;"> <font face="微软雅黑"><a href="#"> <img width="100%" height="350" style="background: url(images/1-161124164155518.png) no-repeat center;" src="{{asset('images/alpha.png')}}"> </a> </font> </li>
+        <li style="position: absolute; left: 0px; top: 0px; display: list-item;"> <font face="微软雅黑"><a href="#"> <img width="100%" height="350" style="background: url({{asset('images/1-161125133Z1117.jpg')}}) no-repeat center;" src="{{asset('images/alpha.png')}}"> </a> </font> </li>
+        <li style="position: absolute; left: 0px; top: 0px; display: none;"> <font face="微软雅黑"><a href="#"> <img width="100%" height="350" style="background: url({{asset('images/1-161124164606219.png')}}) no-repeat center;" src="{{asset('images/alpha.png')}}"> </a> </font> </li>
+        <li style="position: absolute; left: 0px; top: 0px; display: none;"> <font face="微软雅黑"><a href="#"> <img width="100%" height="350" style="background: url({{asset('images/1-161124164155518.png')}}) no-repeat center;" src="{{asset('images/alpha.png')}}"> </a> </font> </li>
     </ul>
     <ul class="flex-direction-nav">
         <li><font face="微软雅黑"></font></li>
@@ -173,11 +173,9 @@
 
         <table width="800" border="0" style="padding:50px; font-size:24px;">
             <tr>
-                <td><a href=""  style="font-size:24px;">S69321</a></td>
+                <td><a href=""  style="font-size:24px;">{{$certificate_number}}</a></td>
             </tr>
         </table>
-
-
     </div>
 
 

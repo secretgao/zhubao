@@ -23,6 +23,7 @@ Route::get('/about', [\App\Http\Controllers\HomeController::class, 'about'])->na
 Route::get('/captcha', [\App\Http\Controllers\HomeController::class, 'generateCaptcha'])->name('home.captcha');
 Route::post('/search', [\App\Http\Controllers\HomeController::class, 'search'])->name('home.search');
 Route::get('/search/result', [\App\Http\Controllers\HomeController::class, 'searchResult'])->name('home.search.result');
+Route::get('/detail/{detail}', [\App\Http\Controllers\HomeController::class, 'detail'])->name('home.detail');
 
 
 Route::prefix('product')->group(function () {

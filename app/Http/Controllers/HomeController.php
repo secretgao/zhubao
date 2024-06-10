@@ -81,10 +81,21 @@ class HomeController extends Controller
 
         $certificate_number = $request->input('certificate_number');
         if (empty($certificate_number)){
-            return response()->json(['status' =>500,'msg'=> '请输入证书编号']);
+            return redirect()->route('/');
         }
         $info = products::query()->where('certificate_number',$certificate_number)->first();
+        if (empty($info)){
+            return redirect()->route('/')->with('detail', '数据未找到');
+        }
+        return view('home/search_result',compact('certificate_number'));
+    }
 
-        return view('home/search_result',compact('info'));
+    public function detail($certificate_number){
+        $info = products::query()->where('certificate_number',$certificate_number)->first();
+        if (empty($info)){
+            return redirect()->route('/')->with('detail', '数据未找到');
+        }
+        $imagePath = Storage::url($info->image_path);
+        return view('home/detail',compact('info','imagePath'));
     }
 }
