@@ -76,4 +76,15 @@ class HomeController extends Controller
         }
         return response()->json(['status' =>200,'msg'=> '请输入证书编号','data'=>$request->input('certificate_number')]);
     }
+
+    public function searchResult(Request $request){
+
+        $certificate_number = $request->input('certificate_number');
+        if (empty($certificate_number)){
+            return response()->json(['status' =>500,'msg'=> '请输入证书编号']);
+        }
+        $info = products::query()->where('certificate_number',$certificate_number)->first();
+
+        return view('home/search_result',compact('info'));
+    }
 }
