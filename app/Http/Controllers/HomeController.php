@@ -20,14 +20,12 @@ class HomeController extends Controller
     }
 
 
-    public function intro($certificate_number){
-
+    public function intro(){
         return view('home/intro');
     }
 
-
-    public function delete(Request $request){
-
+    public function service(){
+        return view('home/service');
     }
     public function deleteall(Request $request){
 
