@@ -173,7 +173,7 @@
 
         <table width="800" border="0" style="padding:50px; font-size:24px;">
             <tr>
-                <td><a href=""  style="font-size:24px;">{{$certificate_number}}</a></td>
+                <td><a href="{{route('home.detail',['detail'=>$certificate_number])}}"  style="font-size:24px;">{{$certificate_number}}</a></td>
             </tr>
         </table>
     </div>
