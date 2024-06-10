@@ -15,24 +15,29 @@
 
     <div class="zsmbadmin-box">
 
-        <div class="t1"><input name="certificate_number" type="text" value="{{ $certificateNumber}}" readonly /></div>
-        <div class="t2"><input name="query_code" type="text" value="{{ $queryCode }}" readonly /></div>
-        <div class="t3"><input name="declaration_name" type="text" value="沉香" /></div>
-        <div class="t4"><input name="product_shape" type="text" value="如图" /></div>
-        <div class="t5"><input name="sample_quality" type="text" value="16mm,15.25g" /></div>
-        <div class="t6"><input name="amplification" type="text" value="带状薄壁组织" /></div>
-        <div class="t7"><input name="detection" type="text" value="瑞香科沉香属" /></div>
-        <div class="t8"><input name="detection_1" type="text" value="Aquilaria sp." /></div>
+        <div class="t1">
+            {{$info->certificate_number}}
+            <input name="certificate_number" type="hidden" value="{{$info->certificate_number}}"  />
+        </div>
+        <div class="t2">
+            {{ $info->queryCode }}
+
+        </div>
+        <div class="t3"><input name="declaration_name" type="text" value="{{$info->declaration_name}}" /></div>
+        <div class="t4"><input name="product_shape" type="text" value="{{$info->product_shape}}" /></div>
+        <div class="t5"><input name="sample_quality" type="text" value="{{$info->sample_quality}}" /></div>
+        <div class="t6"><input name="amplification" type="text" value="{{$info->amplification}}" /></div>
+        <div class="t7"><input name="detection" type="text" value="{{$info->detection}}" /></div>
+        <div class="t8"><input name="detection_1" type="text" value="{{$info->detection_1}}" /></div>
         <div class="t9">
 
             <input type="file" id="imageUpload" name="image" accept="image/*" onchange="previewImage(event)">
             <br>
-            <img id="imagePreview" class="preview" src="{{asset('images/up1.jpg') }}" alt="图片预览">
+            <img id="imagePreview" class="preview" src="{{$imagePath}}" alt="图片预览">
 
            </div>
         <div class="t10">
-            <img src="{{$qcurl}}">
-            <input type="hidden" id="qc" name="qc_content" value="{{$qcurl}}">
+            <img src="{{$info->qc_content}}">
         </div>
 
         <input type="hidden" id="imagePath" name="image_path">
@@ -42,8 +47,6 @@
 </div>
 <div class="dyzm">
     <div class="dyzm1"><button type="submit">保存上传</button></div>
-    <div class="dyzm1 dyzm2"><a href="zsdy.html" target="_blank">打印证书</a></div>
-    <div class="dyzm1 dyzm2"><a href="zsdy-bm.html" target="_blank">打印背面</a></div>
 </div>
 </form>
 
@@ -69,7 +72,7 @@
         formData.append('_token', token);
 
         $.ajax({
-            url: '/upload/file', // 替换为你的服务器端点
+            url: {{route('product.update')}}, // 替换为你的服务器端点
             type: 'POST',
             data: formData,
             contentType: false,
