@@ -17,6 +17,10 @@ Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('h
 Route::get('/intro', [\App\Http\Controllers\HomeController::class, 'intro'])->name('home.intro');
 Route::get('/service', [\App\Http\Controllers\HomeController::class, 'service'])->name('home.service');
 Route::get('/jew', [\App\Http\Controllers\HomeController::class, 'jew'])->name('home.jew');
+Route::get('/job', [\App\Http\Controllers\HomeController::class, 'job'])->name('home.job');
+Route::get('/advice', [\App\Http\Controllers\HomeController::class, 'advice'])->name('home.advice');
+Route::get('/about', [\App\Http\Controllers\HomeController::class, 'about'])->name('home.about');
+
 
 Route::prefix('product')->group(function () {
     Route::get('/index', [\App\Http\Controllers\ProductController::class, 'index'])->name('product.list');

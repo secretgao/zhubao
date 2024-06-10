@@ -31,13 +31,15 @@ class HomeController extends Controller
     public function jew(){
         return view('home/jew');
     }
-    public function deleteall(Request $request){
-
+    public function job(Request $request){
+        return view('home/job');
     }
 
-    public function dataprint($certificate_number){
-
+    public function advice(){
+        return view('home/advice');
     }
-
+    public function about(){
+        return view('home/about');
+    }
 
 }
