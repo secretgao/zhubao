@@ -20,8 +20,7 @@
             <input name="certificate_number" type="hidden" value="{{$info->certificate_number}}"  />
         </div>
         <div class="t2">
-            {{ $info->queryCode }}
-
+            {{$info->query_code}}
         </div>
         <div class="t3"><input name="declaration_name" type="text" value="{{$info->declaration_name}}" /></div>
         <div class="t4"><input name="product_shape" type="text" value="{{$info->product_shape}}" /></div>
@@ -70,9 +69,8 @@
 
         formData.append('image', imageFile);
         formData.append('_token', token);
-
         $.ajax({
-            url: {{route('product.update')}}, // 替换为你的服务器端点
+            url: '/upload/file', // 替换为你的服务器端点
             type: 'POST',
             data: formData,
             contentType: false,
@@ -88,12 +86,10 @@
     }
     $('#uploadForm').submit(function(e) {
         e.preventDefault(); // 阻止表单默认提交行为
-
         var formData = $(this).serialize(); // 序列化表单数据
-
         $.ajax({
             type: 'POST',
-            url: "{{route('upload.upload')}}", //URL
+            url: "{{route('product.update')}}", //URL
             data: formData,
             success: function (response) {
                 // 成功提交后的回调函数
