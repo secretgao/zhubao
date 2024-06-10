@@ -174,7 +174,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Gregwar\Captcha\CaptchaServiceProvider::class
+      //  Gregwar\Captcha\CaptchaServiceProvider::class
     ],
 
     /*
@@ -230,7 +230,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
-      //  'Captcha' => Gregwar\Captcha\CaptchaServiceProvider::class,
+       // 'Captcha' => Gregwar\Captcha\CaptchaServiceProvider::class,
     ],
 
 ];
