@@ -180,6 +180,7 @@
                             <tr>
                                 <td height="31" style="padding: 4px"><span class="zs" style=" line-height:30px;"><b>&nbsp;<a name="Query"></a>验证码：</b></span>
                                     <input type="text" id="txtNo" name="TestNo" style="padding: 2px" size="4" />
+                                    <img src="{{ url('captcha') }}" />
                                     <br /></td>
                             </tr>
                             <tr>

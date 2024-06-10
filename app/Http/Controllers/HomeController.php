@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 
+use Facade\FlareClient\Http\Response;
+use Gregwar\Captcha\PhraseBuilder;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -11,6 +13,8 @@ use Illuminate\Http\Request;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Gregwar\Captcha\CaptchaBuilder;
+use Session;
 class HomeController extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -44,25 +48,12 @@ class HomeController extends Controller
     }
 
     function generateCaptcha() {
-        $captchaChars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $captchaLength = 6;
-        $captchaCode = '';
-        for ($i = 0; $i < $captchaLength; $i++) {
-            $captchaCode .= $captchaChars[rand(0, strlen($captchaChars) - 1)];
-        }
+        $builder = new CaptchaBuilder;
+        $builder->build();
+        // 将字符串保存到session中
+        Session::put('captcha', $builder->getPhrase());
 
-        $captchaImage = imagecreatetruecolor(120, 50);
-        $bgColor = imagecolorallocate($captchaImage, 255, 255, 255);
-        imagefilledrectangle($captchaImage, 0, 0, 120, 50, $bgColor);
-        $textColor = imagecolorallocate($captchaImage, 0, 0, 0);
-        imagestring($captchaImage, 5, 40, 15, $captchaCode, $textColor);
-
-        ob_start();
-        imagepng($captchaImage);
-        $captchaImageContent = ob_get_contents();
-        ob_end_clean();
-
-        return Response::make($captchaImageContent)->header('Content-Type', 'image/png');
-    }
+        // 将生成的图片输出到浏览器
+        return response($builder->output())->header('Content-type','image/jpeg'); }
 
 }

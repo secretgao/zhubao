@@ -8,10 +8,6 @@ declare(strict_types = 1);
  */
 
 namespace App\Utils;
-
-
-
-
 use App\Models\products;
 
 class CommonUtil
