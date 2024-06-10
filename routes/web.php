@@ -42,5 +42,7 @@ Route::prefix('upload')->group(function () {
     Route::get('/index', [\App\Http\Controllers\UploadController::class, 'index'])->name('upload.index');
     Route::post('/upload', [\App\Http\Controllers\UploadController::class, 'upload'])->name('upload.upload');
     Route::post('/file', [\App\Http\Controllers\UploadController::class, 'file']);
+    Route::get('/printbm', [\App\Http\Controllers\UploadController::class, 'printbm'])->name('upload.printbm');
+
 });
 Route::get('/qc', [\App\Http\Controllers\QrCodeController::class, 'show'])->name('qrcode.show');

@@ -48,12 +48,12 @@ class HomeController extends Controller
         return view('home/about');
     }
 
+
     public function generateCaptcha() {
         $builder = new CaptchaBuilder;
         $builder->build();
         // 将字符串保存到session中
         Session::put('captcha', $builder->getPhrase());
-
         // 将生成的图片输出到浏览器
         return response($builder->output())->header('Content-type','image/jpeg');
     }
@@ -66,15 +66,19 @@ class HomeController extends Controller
         if (Session::get('captcha') != $request->input('verify_code')) {
             return response()->json(['status' =>500,'msg'=> '验证码输入错误']);
         }
-        if (empty($request->input('certificate_number'))){
-            return response()->json(['status' =>500,'msg'=> '请输入证书编号']);
+        $query = $request->input('certificate_number');
+        if (empty($query)){
+            return response()->json(['status' =>500,'msg'=> '请输入编号']);
         }
-        $info = products::query()->where('certificate_number',$request->input('certificate_number'))->first();
+        $info = products::query()
+            ->where('certificate_number',$query)
+            ->orWhere('query_code',$query)
+            ->first();
 
         if (empty($info)){
             return response()->json(['status' =>500,'msg'=> '证书编号不存在']);
         }
-        return response()->json(['status' =>200,'msg'=> '请输入证书编号','data'=>$request->input('certificate_number')]);
+        return response()->json(['status' =>200,'msg'=> '请输入证书编号','data'=>$info->certificate_number]);
     }
 
     public function searchResult(Request $request){

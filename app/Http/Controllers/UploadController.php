@@ -88,9 +88,11 @@ class UploadController extends Controller
             // 返回文件存储路径
             return response()->json(['path' => $path,'status'=>200]);
         }
-
         return response()->json(['msg' => 'No file received','status'=>500]);
+    }
 
+    public function printbm(){
+        return view('upload/printbm');
     }
 
 }

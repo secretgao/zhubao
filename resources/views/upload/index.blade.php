@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>深信国检珠宝检测鉴定中心</title>
-    <link rel="stylesheet" href="{{asset('images/style.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{asset('images/style.css')}}" type="text/css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="{{asset('images/layui/css/layui.css')}}">
     <script src="{{asset('images/layui/layui.js')}}"></script>
@@ -42,8 +42,7 @@
 </div>
 <div class="dyzm">
     <div class="dyzm1"><button type="submit">保存上传</button></div>
-    <div class="dyzm1 dyzm2"><a href="zsdy.html" target="_blank">打印证书</a></div>
-    <div class="dyzm1 dyzm2"><a href="zsdy-bm.html" target="_blank">打印背面</a></div>
+    <div class="dyzm1 dyzm2"><a href="{{route('upload.printbm')}}" target="_blank">打印背面</a></div>
 </div>
 </form>
 
