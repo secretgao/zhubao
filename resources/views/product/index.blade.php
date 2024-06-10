@@ -169,17 +169,12 @@
             e.preventDefault(); // 阻止默认行为
             var certificate_number =   $('.yecode input[name="select-all-certificate_number"]').val(); // 获取 选中的值
             if (certificate_number == ''){
-                layer.msg('请先选择要删除的数据', {icon:100,time:2000});
+                layer.msg('请先选择要打印的数据', {icon:100,time:2000});
             }
-            // 通过逗号分隔值
-            let valuesArray = certificate_number.split(',');
-            // 创建新窗口内容
-            for (let value of valuesArray) {
-              var  url = '/product/print/'+ value; //
-                console.log(url)
-                window.open(url)
-            }
-
+           var  url = '/product/printall?certificate_number='+certificate_number;
+            console.log(url);
+            window.open(url, '_blank');
+          //  window.location.href = url;
         });
         function fuzhiduoxuan(selectedValues) {
          $('.yecode input[name="select-all-certificate_number"]').val(selectedValues);

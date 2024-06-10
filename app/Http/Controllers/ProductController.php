@@ -123,4 +123,18 @@ class ProductController extends Controller
             return response()->json(['status' =>500,'msg'=> $e->getMessage()]);
         }
     }
+
+    public function dataprintall(Request $request){
+        $certificate_number = $request->get('certificate_number');
+
+        $certificate_number_arr = explode(',',$certificate_number);
+        $products = products::query()->whereIn('certificate_number',$certificate_number_arr)->get();
+        if  (empty($products)){
+            return redirect()->route('product.list')->with('detail', '数据未找到');
+        }
+        foreach ($products as $item){
+            $item->image_path = Storage::url($item->image_path);
+        }
+        return view('product/printall', compact('products'));
+    }
 }
