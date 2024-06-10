@@ -1,23 +1,23 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>中金国检金银珠宝检验检测中心</title>
-    <meta name="keywords" content="中金国检金银珠宝检验检测中心">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>深信国检珠宝检测鉴定中心</title>
     <link rel="stylesheet" href="{{asset('images/style.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('images/layui/css/layui.css')}}">
+    <script src="{{asset('images/layui/layui.js')}}"></script>
 </head>
-<body style="">
+
+<body>
 <div class="topBg">
     <div class="top">
         <p class="topL"><font face="微软雅黑">欢迎访问深信国检珠宝检测鉴定中心网站！</font></p>
     </div>
 </div>
 <div class="logoBg">
-    <div class="logoBox">
-        <font face="微软雅黑">
-            <a class="logo" href="http://www.zjs100.com/" style="background: url(images/topimg2.png) no-repeat 0 0;
+    <div class="logoBox"> <font face="微软雅黑"> <a class="logo" href="#" style="background: url(images/topimg2.png) no-repeat 0 0;
     text-indent: -999px;
-    overflow: hidden;"></a>
-        </font>
+    overflow: hidden;"></a> </font>
         <div class="biaozhi"><font face="微软雅黑"><img src="{{asset('images/midimg.png')}}" width="463" height="115" alt=""></font></div>
     </div>
 </div>
@@ -34,7 +34,6 @@
         </ul>
     </div>
 </div>
-</font>
 <style>
     .flexslider {
         margin: 0px auto 0px;
@@ -126,29 +125,15 @@
         display: block;
     }
 </style>
-
 <font face="微软雅黑">
 
     <!-- 轮播广告 -->
 </font>
 <div id="banner_tabs" class="flexslider">
     <ul class="slides">
-        <li style="position: absolute; left: 0px; top: 0px; display: list-item;">
-            <font face="微软雅黑"><a href="#">
-                    <img width="100%" height="350" style="background: url(images/1-161125133Z1117.jpg) no-repeat center;" src="{{asset('images/alpha.png')}}">
-                </a>
-            </font>
-        </li><li style="position: absolute; left: 0px; top: 0px; display: none;">
-            <font face="微软雅黑"><a href="#">
-                    <img width="100%" height="350" style="background: url(images/1-161124164606219.png) no-repeat center;" src="{{asset('images/alpha.png')}}">
-                </a>
-            </font>
-        </li><li style="position: absolute; left: 0px; top: 0px; display: none;">
-            <font face="微软雅黑"><a href="#">
-                    <img width="100%" height="350" style="background: url(images/1-161124164155518.png) no-repeat center;" src="{{asset('images/alpha.png')}}">
-                </a>
-            </font>
-        </li>
+        <li style="position: absolute; left: 0px; top: 0px; display: list-item;"> <font face="微软雅黑"><a href="#"> <img width="100%" height="350" style="background: url(images/1-161125133Z1117.jpg) no-repeat center;" src="images/alpha.png"> </a> </font> </li>
+        <li style="position: absolute; left: 0px; top: 0px; display: none;"> <font face="微软雅黑"><a href="#"> <img width="100%" height="350" style="background: url(images/1-161124164606219.png) no-repeat center;" src="images/alpha.png"> </a> </font> </li>
+        <li style="position: absolute; left: 0px; top: 0px; display: none;"> <font face="微软雅黑"><a href="#"> <img width="100%" height="350" style="background: url(images/1-161124164155518.png) no-repeat center;" src="images/alpha.png"> </a> </font> </li>
     </ul>
     <ul class="flex-direction-nav">
         <li><font face="微软雅黑"></font></li>
@@ -156,8 +141,8 @@
     </ul>
 </div>
 <font face="微软雅黑">
-    <script src="{{asset('images/jquery-1.10.2.min.js')}}"></script>
-    <script src="{{asset('images/slider.js')}}"></script>
+    <script src="images/jquery-1.10.2.min.js"></script>
+    <script src="images/slider.js"></script>
     <script type="text/javascript">
         $(function() {
             var bannerSlider = new Slider($('#banner_tabs'), {
@@ -177,47 +162,46 @@
             });
         })
     </script>
-
 </font>
-
 <div class="clear"></div>
-
-<div class="link" style="width: 1200px; height: 267px">
+<div class="link" style="width: 956px; ">
     <div class="titleBox">
-        <div class="title_l"><font face="微软雅黑">服务指南 <span>/ Service</span></font></div>
-        <div class="title_r"></div></div>
+        <div class="title_l"><font face="微软雅黑">证书查询结果>>></font></div>
+        <div class="title_r"></div>
+    </div>
     <div class="linkBox">
-        <font size="3">
-            <b>&nbsp;服务指南：</b></font><font size="2"><br><br>
-        </font>
-        <img src=images/service.png width=850 height=450>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p><br>
+
+        <table width="800" border="0" style="padding:50px; font-size:24px;">
+            <tr>
+                <td><a href="#"  style="font-size:24px;">S69321</a></td>
+            </tr>
+        </table>
+
+
     </div>
 
 
+</div>
 
-    <div class="footer">
-        <div class="footerBox2">
-            <p><font face="微软雅黑">2020-2030 深信国检珠宝检测鉴定中心 版权所有 联系地址:深圳市罗湖区水贝二路泊林花园6栋4楼3AD</font></p>
-        </div>
+
+
+<div class="footer">
+    <div class="footerBox2">
+        <p><font face="微软雅黑">2020-2030 深信国检珠宝检测鉴定中心 版权所有 联系地址:深圳市罗湖区水贝二路泊林花园6栋4楼3AD</font></p>
     </div>
-    <script language="javascript">
-        function mygo()
-        {
-            var strNo = document.getElementById("txtNo").value;
-            window.location="result.htm?" + strNo;
-            //window.open("http://120.25.163.7/zzServer/esz.aspx?cid=" + strNo);
-        }
-    </script>
-</body></html>
+</div>
+<script language="javascript">
+    function mygo1()
+    {
+        var strNo = document.getElementById("txtNo").value + "new";
+        window.location="result.htm?" + strNo;
+    }
+
+    function mygo2()
+    {
+        var strNo = document.getElementById("txtNo").value;
+        window.location="result.htm?" + strNo;
+    }
+</script>
+</body>
+</html>

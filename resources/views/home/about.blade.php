@@ -30,7 +30,7 @@
             <li class="menuLi"><font face="微软雅黑"><a class="menu_a" href="/jew">珠宝常识</a></font></li>
             <li class="menuLi"><font face="微软雅黑"><a class="menu_a" href="/job">人才招聘</a></font></li>
             <li class="menuLi"><font face="微软雅黑"><a class="menu_a" href="/advice">意见反馈</a></font></li>
-            <li class="menuLi"><font face="微软雅黑"><a class="menu_a" href="/about">联系我们</a></li>
+            <li class="menuLi"><font face="微软雅黑"><a class="menu_a" href="/about">联系我们</a></font></li>
         </ul>
     </div>
 </div>
