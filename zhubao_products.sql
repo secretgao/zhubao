@@ -21,24 +21,24 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- Table structure for zhubao_products
 -- ----------------------------
 DROP TABLE IF EXISTS `zhubao_products`;
-CREATE TABLE `zhubao_products`  (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `certificate_number` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
-  `query_code` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
-  `declaration_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
-  `product_shape` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
-  `sample_quality` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
-  `amplification` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
-  `detection` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
-  `detection_1` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
-  `image_path` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+CREATE TABLE `zhubao_products` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `certificate_number` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `query_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `declaration_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `product_shape` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sample_quality` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `amplification` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `detection` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `detection_1` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `image_path` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `qc_content` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `qc_content` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `ldentifier` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
-  `supervisior` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `ldentifier` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `supervisior` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of zhubao_products
