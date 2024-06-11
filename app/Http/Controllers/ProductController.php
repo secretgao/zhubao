@@ -72,7 +72,7 @@ class ProductController extends Controller
             $image_path_arr[]=$item->image_path;
             $qc_content_arr[]=$item->qc_content;
         }
-        if ($info->delete()){
+        if (products::query()->whereIn('certificate_number',$certificate_number_arr)->delete()){
             foreach ($image_path_arr as $i){
                 Storage::delete($i);
             }
