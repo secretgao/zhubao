@@ -46,7 +46,11 @@ class ProductController extends Controller
         if (empty($info)){
             return response()->json(['status'=>500,'msg'=>'数据不存在或参数错误']);
         }
+        $image_path = $info->image_path;
+        $qc_content = $info->qc_content;
         if ($info->delete()){
+            Storage::delete($image_path);
+            Storage::delete($qc_content);
             return response()->json(['status'=>200,'msg'=>'刪除成功']);
         }
         return response()->json(['status'=>500,'msg'=>'刪除失败']);
@@ -54,10 +58,27 @@ class ProductController extends Controller
     public function deleteall(Request $request){
         $certificate_number = $request->input('certificate_number');
         $certificate_number_arr = explode(',',$certificate_number);
-        $info = products::query()->whereIn('certificate_number',$certificate_number_arr)->delete();
-        if ($info){
+        $info = products::query()->whereIn('certificate_number',$certificate_number_arr)->get();
+
+        if (empty($info)){
+            return response()->json(['status'=>500,'msg'=>'数据不存在']);
+        }
+
+        $image_path_arr = $qc_content_arr = [];
+        foreach ($info as $item){
+            $image_path_arr[]=$item->image_path;
+            $qc_content_arr[]=$item->qc_content;
+        }
+        if ($info->delete()){
+            foreach ($image_path_arr as $i){
+                Storage::delete($i);
+            }
+            foreach ($qc_content_arr as $q){
+                Storage::delete($q);
+            }
             return response()->json(['status'=>200,'msg'=>'刪除成功']);
         }
+
         return response()->json(['status'=>500,'msg'=>'刪除失败']);
     }
 
