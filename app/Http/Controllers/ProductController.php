@@ -56,7 +56,10 @@ class ProductController extends Controller
         return response()->json(['status'=>500,'msg'=>'刪除失败']);
     }
     public function deleteall(Request $request){
-        $certificate_number = $request->input('certificate_number');
+        $certificate_number = $request->input('certificate_number_str');
+        if (empty($certificate_number)){
+            return response()->json(['status'=>500,'msg'=>'参数错误']);
+        }
         $certificate_number_arr = explode(',',$certificate_number);
         $info = products::query()->whereIn('certificate_number',$certificate_number_arr)->get();
 

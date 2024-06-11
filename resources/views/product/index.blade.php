@@ -92,6 +92,7 @@
             $('.item-checkbox:checked').each(function() {
                 selectedValues.push($(this).val());
             });
+            console.log(selectedValues);
             fuzhiduoxuan(selectedValues.join(","));
         });
 
@@ -103,6 +104,7 @@
             $('.item-checkbox:checked').each(function() {
                 selectedValues.push($(this).val());
             });
+            console.log(selectedValues);
             fuzhiduoxuan(selectedValues.join(","));
         });
 
@@ -137,15 +139,17 @@
 
         $('#select-all-delete').on('click', function(e) {
             e.preventDefault(); // 阻止默认行为
-            var certificate_number =  $(this).data('certificate_number'); // 获取 URL
+            var certificate_number =  $('.yecode input[name="select-all-certificate_number"]').val(); // 获取 URL
             if (certificate_number == ''){
                 layer.msg('请先选择要删除的数据', {icon:100,time:2000});
+                return ;
             }
+            console.log(certificate_number);
             $.ajax({
                 url: "{{route('product.deleteall')}}",
                 method: 'POST', // 或 'POST'，根据你的需求
                 data: {
-                    certificate_number: certificate_number,
+                    certificate_number_str: certificate_number,
                     _token: '{{ csrf_token() }}' // Laravel CSRF 保护
                 },
                 success: function(response) {
