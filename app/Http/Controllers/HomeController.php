@@ -50,7 +50,10 @@ class HomeController extends Controller
 
 
     public function generateCaptcha() {
-        $builder = new CaptchaBuilder;
+        $phrase = new PhraseBuilder();
+        //设置验证码位数和图片显示字符串(参数为可选)
+        $verify_num = $phrase->build(4,'123456789');
+        $builder = new CaptchaBuilder($verify_num, $phrase);
         $builder->build();
         // 将字符串保存到session中
         Session::put('captcha', $builder->getPhrase());
