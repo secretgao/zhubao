@@ -42,7 +42,6 @@ class ProductController extends Controller
 
     public function delete(Request $request){
         $certificate_number = $request->input('certificate_number');
-        return response()->json(['status'=>200,'msg'=>'刪除成功']);
         $info = products::query()->where('certificate_number',$certificate_number)->first();
         if (empty($info)){
             return response()->json(['status'=>500,'msg'=>'数据不存在或参数错误']);
