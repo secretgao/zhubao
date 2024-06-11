@@ -25,11 +25,12 @@ class UploadController extends Controller
         $queryCode = CommonUtil::generateQueryCode();
         // 生成二维码的内容，可以是随机字符串或其他信息
         $content = CommonUtil::generateQcContent($certificateNumber,$queryCode);
-        $filename = $content.time().'.png';
+        $filename = $content.'.png';
         $url = route('product.detail', ['filename' =>$filename,'detail'=>$certificateNumber]);
 
         // 生成二维码并保存到存储中
-        QrCode::format('png')->size(200)->generate($url, storage_path("app/public/{$filename}"));
+        $path =storage_path("app/public/{$filename}");
+        QrCode::format('png')->size(200)->generate($url, $path);
         $qcurl = Storage::url($filename);
         return view('upload/index', compact('certificateNumber','queryCode','qcurl'));
     }

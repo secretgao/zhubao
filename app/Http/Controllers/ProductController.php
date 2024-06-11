@@ -48,9 +48,15 @@ class ProductController extends Controller
         }
         $image_path = $info->image_path;
         $qc_content = $info->qc_content;
+        $env_image_path = env('IMAGE_PATH');
+        $env_qc_path = env('QC_PATH');
         if ($info->delete()){
-            Storage::delete($image_path);
-            Storage::delete($qc_content);
+            if (file_exists($env_image_path.$image_path)){
+                unlink($env_image_path.$image_path);
+            }
+            if (file_exists($env_qc_path.$qc_content)){
+                unlink($env_qc_path.$qc_content);
+            }
             return response()->json(['status'=>200,'msg'=>'刪除成功']);
         }
         return response()->json(['status'=>500,'msg'=>'刪除失败']);
@@ -73,11 +79,17 @@ class ProductController extends Controller
             $qc_content_arr[]=$item->qc_content;
         }
         if (products::query()->whereIn('certificate_number',$certificate_number_arr)->delete()){
+            $env_image_path = env('IMAGE_PATH');
+            $env_qc_path = env('QC_PATH');
             foreach ($image_path_arr as $i){
-                Storage::delete($i);
+                if (file_exists($env_image_path.$i)){
+                    unlink($env_image_path.$i);
+                }
             }
             foreach ($qc_content_arr as $q){
-                Storage::delete($q);
+                if (file_exists($env_qc_path.$q)){
+                    unlink($env_qc_path.$q);
+                }
             }
             return response()->json(['status'=>200,'msg'=>'刪除成功']);
         }

@@ -123,6 +123,7 @@
                     if (response.status== 200){
                         // 处理成功响应
                         layer.msg(response.msg, {icon:100,time:2000});
+                        console.log(response);
                         location.reload();    // 重新加载当前页面
                     } else {
                         layer.msg(response.msg, {icon:70,time:2000});
@@ -174,11 +175,11 @@
             var certificate_number =   $('.yecode input[name="select-all-certificate_number"]').val(); // 获取 选中的值
             if (certificate_number == ''){
                 layer.msg('请先选择要打印的数据', {icon:100,time:2000});
+                return;
             }
            var  url = '/product/printall?certificate_number='+certificate_number;
             console.log(url);
             window.open(url, '_blank');
-          //  window.location.href = url;
         });
         function fuzhiduoxuan(selectedValues) {
          $('.yecode input[name="select-all-certificate_number"]').val(selectedValues);
