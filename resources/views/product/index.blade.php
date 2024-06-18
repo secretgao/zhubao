@@ -73,6 +73,7 @@
 </style>
     <div class="d-flex justify-content-center">
         {{ $products->onEachSide(1)->links('vendor.pagination.bootstrap-4')}}
+        {{ $products->onEachSide(1)->links()}}
     </div>
 @if(!empty(session('detail')))
     <script>
