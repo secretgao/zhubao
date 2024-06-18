@@ -3,13 +3,20 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>深信国检珠宝检测鉴定中心</title>
+        <link rel="stylesheet" href="{{asset('images/layui/css/layui.css')}}">
+    <script src="{{asset('images/layui/layui.js')}}"></script>
     <link rel="stylesheet" href="{{asset('images/style.css')}}" type="text/css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="{{asset('images/layui/css/layui.css')}}">
-    <script src="{{asset('images/layui/layui.js')}}"></script>
 </head>
 
 <body>
+<div class="zsdmin_bar">
+    <div class="zsdmin_bar_box">
+    <a href="http://www.sxgjjc.com/upload/index" style="background:#900;">上传证书</a>
+    <a href="http://www.sxgjjc.com/product/index">管理证书</a>
+    <a href="http://www.sxgjjc.com/upload/printbm" target="_blank" >打印证书背面</a>
+    </div>
+</div>
 <form id="uploadForm">
 <div class="zsmbadmin">
 
@@ -23,12 +30,8 @@
         <div class="t6"><input name="amplification" type="text" value="带状薄壁组织" /></div>
         <div class="t7"><input name="detection" type="text" value="瑞香科沉香属" /></div>
         <div class="t8"><input name="detection_1" type="text" value="Aquilaria sp." /></div>
-        <div class="t9">
-
-            <input type="file" id="imageUpload" name="image" accept="image/*" onchange="previewImage(event)">
-            <br>
-            <img id="imagePreview" class="preview" src="{{asset('images/up1.jpg') }}" alt="图片预览">
-
+        <div class="t9" style="background:url({{asset('images/up1.jpg') }});">
+            <input type="file" id="imageUpload" name="image" accept="image/*" onchange="previewImage(event)" style=" width:200px; height:200px; border:none;">
            </div>
         <div class="t10">
             <img src="{{$qcurl}}">
@@ -41,7 +44,7 @@
 
 </div>
 <div class="dyzm">
-    <div class="dyzm1"><button type="submit">保存上传</button></div>
+    <div class="dyzm1"><button type="submit" style="width:120px; height:60px; background-color:#666; float:left;text-align: center; line-height:60px; color:#FFF; font-weight:bold; border:0px; color:#FFF; font-size:18px; cursor:pointer;">保存上传</button></div>
     <div class="dyzm1 dyzm2"><a href="{{route('upload.printbm')}}" target="_blank">打印背面</a></div>
 </div>
 </form>

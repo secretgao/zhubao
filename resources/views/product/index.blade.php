@@ -3,23 +3,18 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>深信国检珠宝检测鉴定中心</title>
-    <link rel="stylesheet" href="{{asset('images/style.css')}}" type="text/css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="{{asset('images/layui/css/layui.css')}}">
     <script src="{{asset('images/layui/layui.js')}}"></script>
-
+    <link rel="stylesheet" href="{{asset('images/style.css')}}" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
 
-<style type="text/css">
-
-</style>
-
 <div class="zsdmin_bar">
     <div class="zsdmin_bar_box">
         <a href="{{route("upload.index")}}">上传证书</a>
-        <a href="#" style="background:#900;">管理证书</a>
+        <a href="http://www.sxgjjc.com/product/index" style="background:#900;">管理证书</a>
         <a href="{{route('upload.printbm')}}" target="_blank" >打印证书背面</a>
     </div>
 </div>
@@ -63,15 +58,22 @@
     </table>
 
     <div class="yecode">
-        <a href="javascript:void(0)" id="select-all">全选</a>&nbsp;
+        <a href="javascript:void(0)" id="select-all">全选</a>&nbsp;&nbsp;&nbsp;&nbsp;
         <input name="select-all-certificate_number"  type="hidden" value="">
-        <a href="javascript:void(0)" id="select-all-print">打印已勾选的证书</a>&nbsp;
+        <a href="javascript:void(0)" id="select-all-print">打印已勾选的证书</a>&nbsp;&nbsp;&nbsp;&nbsp;
         <a href="javascript:void(0)"  id="select-all-delete" >删除</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
+        </div>
+<style type="text/css">
+.justify-content-center,.justify-content-center .page-link{font-size:18px;}
+.justify-content-center ul{ float: right;}
+.justify-content-center ul li{ width:55px; height:30px; line-height:30px; text-align:center; display:block; float:left;}
+.justify-content-center ul li span{ color:#999;}
+.justify-content-center a{font-size:18px; color:#000;}
+.justify-content-center a:hover{ color:#F00;}
+</style>
     <div class="d-flex justify-content-center">
         {{ $products->links('vendor.pagination.bootstrap-4')}}
     </div>
-</div>
 @if(!empty(session('detail')))
     <script>
         layer.alert("{{ session('detail') }}",{icon:6,time:2000});

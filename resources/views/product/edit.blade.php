@@ -29,11 +29,8 @@
         <div class="t7"><input name="detection" type="text" value="{{$info->detection}}" /></div>
         <div class="t8"><input name="detection_1" type="text" value="{{$info->detection_1}}" /></div>
         <div class="t9">
-
-            <input type="file" id="imageUpload" name="image" accept="image/*" onchange="previewImage(event)">
-            <br>
             <img id="imagePreview" class="preview" src="{{$imagePath}}" alt="图片预览">
-
+			<input type="file" id="imageUpload" name="image" accept="image/*" onchange="previewImage(event)" style="width:200px; height:32px; border:none; color:#F00; margin-top:2px;">
            </div>
         <div class="t10">
             <img src="{{$info->qc_content}}">
@@ -45,7 +42,7 @@
 
 </div>
 <div class="dyzm">
-    <div class="dyzm1"><button type="submit">保存上传</button></div>
+    <div class="dyzm1"><button type="submit" style="width:120px; height:60px; background-color:#666; float:left;text-align: center; line-height:60px; color:#FFF; font-weight:bold; border:0px; color:#FFF; font-size:18px; cursor:pointer;">保存修改</button></div>
 </div>
 </form>
 

@@ -180,11 +180,17 @@
                                     <br /></td>
                             </tr>
                             <tr>
-                                <td height="31" style="padding: 4px"><span class="zs" style=" line-height:30px;"><b>&nbsp;<a name="verify_code"></a>验证码：</b></span>
-                                    <input type="text" id="txtNo" name="verify_code" style="padding: 2px" size="4" />
-                                    <img src="{{ url('captcha') }}"  onclick="this.src='{{ url('captcha') }}?'+Math.random()"/>
+                                <td height="31" ><span class="zs" style=" line-height:30px;"><b>&nbsp;<a name="verify_code"></a></b></span>
+                                    <input type="text" id="txtNo" name="verify_code" style="padding: 2px" size="4" value="验证码" onfocus="clearDefault(this)"/>
+                                    <img src="{{ url('captcha') }}"  onclick="this.src='{{ url('captcha') }}?'+Math.random()" style=" width:120px; height:40px;"/>
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <br /></td>
+                                    <script type="text/javascript">
+function clearDefault(input) {
+    if (input.value === "验证码") {
+        input.value = "";
+    }
+}
+</script></td>
                             </tr>
                             <tr>
                                 <td height="36" style="padding: 4px"><input type="button" onclick="mygo2()"  id="cert_query" value="证书查询" style="padding: 4px" /></td>
