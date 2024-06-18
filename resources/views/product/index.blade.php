@@ -72,7 +72,7 @@
 .justify-content-center a:hover{ color:#F00;}
 </style>
     <div class="d-flex justify-content-center">
-        {{ $products->onEachSide(1)->links('vendor.pagination.bootstrap-4')}}
+        {{ $products->onEachSide(8)->links('vendor.pagination.bootstrap-4')}}
     </div>
 @if(!empty(session('detail')))
     <script>
