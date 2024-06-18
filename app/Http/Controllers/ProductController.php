@@ -23,7 +23,7 @@ class ProductController extends Controller
             $query->where('certificate_number',$search);
         }
         $query->orderby('id','desc');
-        $products = $query->paginate(4);
+        $products = $query->paginate(20);
         return view('product/index', compact('products'));
     }
 
