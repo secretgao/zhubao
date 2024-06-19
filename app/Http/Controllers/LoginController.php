@@ -13,6 +13,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Gregwar\Captcha\CaptchaBuilder;
@@ -52,10 +53,10 @@ class LoginController extends Controller
         if ($requestData['password'] != $info->password){
             return response()->json(['status' =>500,'msg'=> '密码错误']);
         }
-
-        $request->session()->regenerate();
-        return response()->json(['status' =>200,'msg'=> '登录成功']);
-
+        if (Auth::attempt($info)){
+            return response()->json(['status' =>200,'msg'=> '登录成功']);
+        }
+        return response()->json(['status' =>500,'msg'=> '登录失败']);
     }
 
 }

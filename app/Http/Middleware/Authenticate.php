@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Closure;
+use Illuminate\Support\Facades\Auth;
 class Authenticate extends Middleware
 {
     /**
@@ -21,8 +22,12 @@ class Authenticate extends Middleware
 
     public function handle($request, Closure $next)
     {
-        $response = $next($request);
-        // Perform action
-        return $response;
+       // $response = $next($request);
+        if (!Auth::check()) {
+            // 用户未登录，重定向到登录页面
+            return redirect()->route('login.show');
+        }
+
+        return $next($request);
     }
 }
