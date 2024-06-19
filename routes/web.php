@@ -25,6 +25,7 @@ Route::post('/search', [\App\Http\Controllers\HomeController::class, 'search'])-
 Route::get('/search/result', [\App\Http\Controllers\HomeController::class, 'searchResult'])->name('home.search.result');
 Route::get('/detail/{detail}', [\App\Http\Controllers\HomeController::class, 'detail'])->name('home.detail');
 
+Route::get('/login', [\App\Http\Controllers\LoginController::class, 'loginshow'])->name('login.show');
 
 Route::prefix('product')->group(function () {
     Route::get('/index', [\App\Http\Controllers\ProductController::class, 'index'])->name('product.list');

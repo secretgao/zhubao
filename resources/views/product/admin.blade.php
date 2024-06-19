@@ -38,7 +38,7 @@
         @foreach ($admins as $item)
         <tr>
             <td>{{$item->username}}</td>
-            <td>admin888</td>
+            <td>密码</td>
             <td>{{$item->remark}}</td>
             <td>@if ($item->role == 1)
                     超级管理员
@@ -46,7 +46,7 @@
                     普通用户
                 @endif
             </td>
-            <td><a href="#" id="showDropdownBtn1">更改密码</a></td>
+            <td><a href="#" id="showDropdownBtn13">更改密码</a></td>
         </tr>
         @endforeach
 
