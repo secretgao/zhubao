@@ -35,20 +35,21 @@
             <td width="123"><strong>级别</strong></td>
             <td width="211"><strong>操作</strong></td>
         </tr>
+        @foreach ($admins as $item)
         <tr>
-            <td>admin</td>
+            <td>{{$item->username}}</td>
             <td>admin888</td>
-            <td>网站管理员</td>
-            <td>超级管理员</td>
+            <td>{{$item->remark}}</td>
+            <td>@if ($item->role == 1)
+                    超级管理员
+                @else
+                    普通用户
+                @endif
+            </td>
             <td><a href="#" id="showDropdownBtn1">更改密码</a></td>
         </tr>
-        <tr>
-            <td>sunyi</td>
-            <td>sunyi888</td>
-            <td>香苑</td>
-            <td>普通用户</td>
-            <td><a href="#" id="showDropdownBtn1">更改密码</a> &nbsp;&nbsp; <a href="#">删除</a></td>
-        </tr>
+        @endforeach
+
         <tr>
             <td>sunyi</td>
             <td>sunyi888</td>
@@ -108,6 +109,10 @@
             <div class="input-group">
                 <label for="password">再次输入新密码</label>
                 <input type="password" id="password" name="password_confirmed" required>
+            </div>
+            <div class="input-group">
+                <label for="remark">备注</label>
+                <input type="text" id="remark" name="remark" >
             </div>
             <div class="input-group">
                 <select style="width:120px; height:32px;" name="role">

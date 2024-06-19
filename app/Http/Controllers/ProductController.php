@@ -178,7 +178,8 @@ class ProductController extends Controller
 
     public function admin(){
 
-        $admins = [];
+        $query = users::query();
+        $admins = $query->paginate(20);
         return view('product/admin', compact('admins'));
     }
 
@@ -192,6 +193,8 @@ class ProductController extends Controller
                 'username' => 'required|string|max:255|unique:zhubao_users,username',
                 'password' => 'required|string|min:5',
                 'password_confirmed' => 'required|string',
+                'role' => 'required|string',
+                'remark'=> 'nullable|string',
             ],
             [
                 'username.required' => '用户名是必填项。',
@@ -209,7 +212,15 @@ class ProductController extends Controller
         }
 //password_verify（$request->password,$user->password）
         try {
-            $result = users::query()->create(['username'=>$requestData['username'],'password'=>bcrypt($requestData['password'])]);
+
+            $result = users::query()->create(
+                [
+                    'username'=>$requestData['username'],
+                    'password'=>bcrypt($requestData['password']),
+                    'remark'=>$requestData['remark'],
+                    'role'=>$requestData['role'],
+                ]
+            );
             return response()->json(['status' =>200,'msg'=> $result]);
         } catch (QueryException $e) {
             return response()->json(['status' =>500,'msg'=> $e->getMessage()]);

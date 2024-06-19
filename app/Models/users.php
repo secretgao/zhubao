@@ -14,5 +14,7 @@ class users extends Model
     public $fillable = [
         'username',
         'password',
+        'role',
+        'remark',
     ];
 }
