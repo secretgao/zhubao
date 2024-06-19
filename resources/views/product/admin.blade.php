@@ -17,7 +17,7 @@
 <div class="zsdmin_bar">
     <div class="zsdmin_bar_box">
         <a href="{{route("upload.index")}}">上传证书</a>
-        <a href="{{route("product.list")}}" style="background:#900;">管理证书</a>
+        <a href="{{route("product.list")}}" >管理证书</a>
         <a href="{{route('upload.printbm')}}" target="_blank" >打印证书背面</a>
         <a href="{{route('product.admin')}}" style="background:#900;">用户账号管理</a>
     </div>

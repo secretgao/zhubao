@@ -12,9 +12,10 @@
 <body>
 <div class="zsdmin_bar">
     <div class="zsdmin_bar_box">
-    <a href="http://www.sxgjjc.com/upload/index" style="background:#900;">上传证书</a>
-    <a href="http://www.sxgjjc.com/product/index">管理证书</a>
-    <a href="http://www.sxgjjc.com/upload/printbm" target="_blank" >打印证书背面</a>
+        <a href="{{route("upload.index")}}" style="background:#900;">上传证书</a>
+        <a href="{{route("product.list")}}" >管理证书</a>
+        <a href="{{route('upload.printbm')}}" target="_blank" >打印证书背面</a>
+        <a href="{{route('product.admin')}}">用户账号管理</a>
     </div>
 </div>
 <form id="uploadForm">
