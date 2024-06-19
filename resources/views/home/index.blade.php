@@ -175,15 +175,21 @@
                 <td valign=top style="border: 1px solid #EFEFEF; padding: 4px"><form id="form1" method="post" name="frm_Query">
                         <table border=0 style="border-collapse: collapse" bordercolor="#B5B5B5" height="141" width="231">
                             <tr>
-                                <td height="31" style="padding: 4px"><span class="zs" style=" line-height:30px;"><b>&nbsp;<a name="query"></a>证书编号：</b></span>
-                                    <input type="text" id="txtNo" name="query" style="padding: 2px" size="25" />
+                                <td height="31" style="padding: 4px"><span class="zs" style=" line-height:30px;"><b>&nbsp;<a name="certificate_number"></a>证书编号：</b></span>
+                                    <input type="text" id="txtNo" name="certificate_number" style="padding: 2px" size="25" />
                                     <br /></td>
                             </tr>
+                            <tr>
+                                <td height="31" style="padding: 4px"><span class="zs" style=" line-height:30px;"><b>&nbsp;<a name="query_code"></a>查询编码：</b></span>
+                                    <input type="text" id="txtNo" name="query_code" style="padding: 2px" size="25" />
+                                    <br /></td>
+                            </tr>
+                            <!--
                             <tr>
                                 <td height="31" ><span class="zs" style=" line-height:30px;"><b>&nbsp;<a name="verify_code"></a></b></span>
                                     <input type="text" id="txtNo" name="verify_code" style="padding: 2px" size="4" value="验证码" onfocus="clearDefault(this)"/>
                                     <img src="{{ url('captcha') }}"  onclick="this.src='{{ url('captcha') }}?'+Math.random()" style=" width:120px; height:40px;"/>
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
                                     <script type="text/javascript">
 function clearDefault(input) {
     if (input.value === "验证码") {
@@ -191,9 +197,12 @@ function clearDefault(input) {
     }
 }
 </script></td>
-                            </tr>
+                            </tr> -->
                             <tr>
-                                <td height="36" style="padding: 4px"><input type="button" onclick="mygo2()"  id="cert_query" value="证书查询" style="padding: 4px" /></td>
+                                <td height="36" style="padding: 4px">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <input type="button" onclick="mygo2()"  id="cert_query" value="证书查询" style="padding: 4px" />
+                                </td>
                             </tr>
                         </table>
                     </form></td>
@@ -215,21 +224,22 @@ function clearDefault(input) {
     {
         var formData = new FormData();
         var token = $('#form1 input[name="_token"]').val();
-        var certificate_number = $('#form1 input[name="query"]').val();
-        var verify_code = $('#form1 input[name="verify_code"]').val();
+        var certificate_number = $('#form1 input[name="certificate_number"]').val();
+        var query_code = $('#form1 input[name="query_code"]').val();
+       // var verify_code = $('#form1 input[name="verify_code"]').val();
         if (certificate_number == ''){
             layer.msg('请输入证书编号', {icon:100,time:2000});
             return;
         }
-        if (verify_code == ''){
-            layer.msg('请输入验证码', {icon:100,time:2000});
+        if (query_code == ''){
+            layer.msg('请输入查询编码', {icon:100,time:2000});
             return;
         }
 
         $.ajax({
             type: 'POST',
             url: "{{route('home.search')}}", //URL
-            data: {certificate_number:certificate_number,verify_code:verify_code,_token:token},
+            data: {certificate_number:certificate_number,query_code:query_code,_token:token},
             success: function (response) {
                 // 成功提交后的回调函数
                 console.log(response);

@@ -62,20 +62,25 @@ class HomeController extends Controller
     }
 
     public function search(Request $request){
-
+/*
         if (empty($request->input('verify_code'))){
             return response()->json(['status' =>500,'msg'=> '请输入验证码']);
         }
         if (Session::get('captcha') != $request->input('verify_code')) {
             return response()->json(['status' =>500,'msg'=> '验证码输入错误']);
+        }*/
+
+        $certificate_number = $request->input('certificate_number');
+        $query_code = $request->input('query_code');
+        if (empty($certificate_number)){
+            return response()->json(['status' =>500,'msg'=> '请输入证书编号']);
         }
-        $query = $request->input('certificate_number');
-        if (empty($query)){
-            return response()->json(['status' =>500,'msg'=> '请输入编号']);
+        if (empty($query_code)){
+            return response()->json(['status' =>500,'msg'=> '请输入查询码']);
         }
         $info = products::query()
-            ->where('certificate_number',$query)
-            ->orWhere('query_code',$query)
+            ->where('certificate_number',$certificate_number)
+            ->where('query_code',$query_code)
             ->first();
 
         if (empty($info)){
