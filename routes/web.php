@@ -40,13 +40,12 @@ Route::prefix('product')->group(function () {
     Route::get('/admin', [\App\Http\Controllers\ProductController::class, 'admin'])->name('product.admin');
     Route::post('/adminadd', [\App\Http\Controllers\ProductController::class, 'adminadd'])->name('product.admin.add');
 
-});
+})->middleware('auth');
 
 Route::prefix('upload')->group(function () {
     Route::get('/index', [\App\Http\Controllers\UploadController::class, 'index'])->name('upload.index');
     Route::post('/upload', [\App\Http\Controllers\UploadController::class, 'upload'])->name('upload.upload');
     Route::post('/file', [\App\Http\Controllers\UploadController::class, 'file']);
     Route::get('/printbm', [\App\Http\Controllers\UploadController::class, 'printbm'])->name('upload.printbm');
-
-});
+})->middleware('auth');
 Route::get('/qc', [\App\Http\Controllers\QrCodeController::class, 'show'])->name('qrcode.show');

@@ -34,6 +34,7 @@
             <label for="password">密码</label>
             <input type="password" id="password" name="password" required>
         </div>
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <button type="submit">登录</button>
     </form>
 </div>

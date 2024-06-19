@@ -216,7 +216,7 @@ class ProductController extends Controller
             $result = users::query()->create(
                 [
                     'username'=>$requestData['username'],
-                    'password'=>bcrypt($requestData['password']),
+                    'password'=>$requestData['password'],
                     'remark'=>$requestData['remark'],
                     'role'=>$requestData['role'],
                 ]
@@ -225,6 +225,5 @@ class ProductController extends Controller
         } catch (QueryException $e) {
             return response()->json(['status' =>500,'msg'=> $e->getMessage()]);
         }
-
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\products;
+use App\Models\users;
 use Facade\FlareClient\Http\Response;
 use Gregwar\Captcha\PhraseBuilder;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -27,8 +28,34 @@ class LoginController extends Controller
 
     public function login(Request $request){
 
+        $requestData = request()->all();
+        $validator = Validator::make(
+            $requestData,
+            [
+                'username' => 'required|string',
+                'password' => 'required|string',
+            ],
+            [
+                'username.required' => '用户名是必填项。',
+                'password.required' => '密码是必填项。',
+            ]
+        );
+        if ($validator->fails()) {
+            return response()->json(['status' =>500,'msg'=> $validator->errors()->first()]);
+        }
 
-        var_dump($request->all());
+        $info =  users::query()->where('username',$requestData['username'])->first();
+        if (empty($info)){
+            return response()->json(['status' =>500,'msg'=> '用户不存在']);
+        }
+
+        if ($requestData['password'] != $info->password){
+            return response()->json(['status' =>500,'msg'=> '密码错误']);
+        }
+
+        $request->session()->regenerate();
+        return response()->json(['status' =>200,'msg'=> '登录成功']);
+
     }
 
 }
