@@ -204,12 +204,12 @@ class ProductController extends Controller
         if ($validator->fails()) {
             return response()->json(['status' =>500,'msg'=> $validator->errors()->first()]);
         }
-        if ($requestData->password != $requestData->confirmed){
+        if ($requestData['password'] != $requestData['password_confirmed']){
             return response()->json(['status' =>500,'msg'=> '两次密码不一致']);
         }
 //password_verify（$request->password,$user->password）
         try {
-            $result = users::query()->create(['username'=>$requestData->username,'password'=>bcrypt($requestData->password)]);
+            $result = users::query()->create(['username'=>$requestData['username'],'password'=>bcrypt($requestData['password'])]);
             return response()->json(['status' =>200,'msg'=> $result]);
         } catch (QueryException $e) {
             return response()->json(['status' =>500,'msg'=> $e->getMessage()]);

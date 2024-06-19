@@ -149,7 +149,6 @@
     });
 */
     $('#adduser').submit(function(e) {
-        var dropdownPage2 = document.getElementById('dropdownPage2');
         e.preventDefault(); // 阻止表单默认提交行为
         var formData = $(this).serialize(); // 序列化表单数据
         $.ajax({
@@ -160,7 +159,6 @@
                 // 成功提交后的回调函数
                 console.log(response);
                 if (response.status == 200) {
-                    dropdownPage2.style.display = 'none';
                     layer.msg('提交成功!', {icon: 100, time: 2000});
                     window.location.href = "{{route('product.admin')}}";
                 } else {
