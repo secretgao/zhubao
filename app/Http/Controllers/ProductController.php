@@ -172,4 +172,10 @@ class ProductController extends Controller
         }
         return view('product/printall', compact('products'));
     }
+
+    public function admin(){
+
+        $admins = [];
+        return view('product/admin', compact('admins'));
+    }
 }
