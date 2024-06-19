@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterRequest;
 use App\Models\products;
+use App\Models\users;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -189,21 +190,30 @@ class ProductController extends Controller
             $requestData,
             [
                 'username' => 'required|string|max:255|unique:zhubao_users,username',
-                'password' => 'required|string|min:8|confirmed',
+                'password' => 'required|string|min:5',
+                'confirmed' => 'required|string',
             ],
             [
                 'username.required' => '用户名是必填项。',
                 'username.unique' => '用户名已存在。',
                 'password.required' => '密码是必填项。',
-                'password.min' => '密码长度至少为 8 个字符。',
-                'password.confirmed' => '密码确认不匹配。',
+                'confirmed.required' => '确认密码是必填项。',
+                'password.min' => '密码长度至少为 5 个字符。',
             ]
         );
-
         if ($validator->fails()) {
             return response()->json(['status' =>500,'msg'=> $validator->errors()->first()]);
         }
-
+        if ($requestData->password != $requestData->confirmed){
+            return response()->json(['status' =>500,'msg'=> '两次密码不一致']);
+        }
+//password_verify（$request->password,$user->password）
+        try {
+            $result = users::query()->create(['username'=>$requestData->username,'password'=>bcrypt($requestData->password)]);
+            return response()->json(['status' =>200,'msg'=> $result]);
+        } catch (QueryException $e) {
+            return response()->json(['status' =>500,'msg'=> $e->getMessage()]);
+        }
 
     }
 }

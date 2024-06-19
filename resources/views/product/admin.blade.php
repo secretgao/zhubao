@@ -5,6 +5,8 @@
     <title>深信国检珠宝检测鉴定中心</title>
     <link rel="stylesheet" href="{{asset('images/style.css') }}" type="text/css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="{{asset('images/layui/css/layui.css')}}">
+    <script src="{{asset('images/layui/layui.js')}}"></script>
 </head>
 
 <style type="text/css">
@@ -83,7 +85,7 @@
             </div>
             <div class="input-group">
                 <label for="password">再次输入新密码</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="confirmed" required>
             </div>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <button type="submit" id="closeDropdownBtn1">提交更改</button>
@@ -105,7 +107,7 @@
             </div>
             <div class="input-group">
                 <label for="password">再次输入新密码</label>
-                <input type="password" id="password" name="confirm_password" required>
+                <input type="password" id="password" name="password_confirmed" required>
             </div>
             <div class="input-group">
                 <select style="width:120px; height:32px;" name="role">
