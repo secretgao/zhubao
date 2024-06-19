@@ -28,7 +28,11 @@ Route::get('/detail/{detail}', [\App\Http\Controllers\HomeController::class, 'de
 Route::get('/login', [\App\Http\Controllers\LoginController::class, 'loginshow'])->name('login.show');
 Route::post('/login', [\App\Http\Controllers\LoginController::class, 'login'])->name('login.login');
 
-Route::prefix('product')->group(function () {
+
+Route::group([
+    'prefix' => 'product',
+    'middleware' =>['auth'],
+], function () {
     Route::get('/index', [\App\Http\Controllers\ProductController::class, 'index'])->name('product.list');
     Route::get('/detail/{detail}', [\App\Http\Controllers\ProductController::class, 'detail'])->name('product.detail');
     Route::get('/print/{print}', [\App\Http\Controllers\ProductController::class, 'dataprint'])->name('product.print');
@@ -39,13 +43,15 @@ Route::prefix('product')->group(function () {
     Route::get('/printall', [\App\Http\Controllers\ProductController::class, 'dataprintall'])->name('product.print.all');
     Route::get('/admin', [\App\Http\Controllers\ProductController::class, 'admin'])->name('product.admin');
     Route::post('/adminadd', [\App\Http\Controllers\ProductController::class, 'adminadd'])->name('product.admin.add');
-
-})->middleware('auth');
-
-Route::prefix('upload')->group(function () {
+});
+Route::group([
+    'prefix' => 'upload',
+    'middleware' =>['auth'],
+], function () {
     Route::get('/index', [\App\Http\Controllers\UploadController::class, 'index'])->name('upload.index');
     Route::post('/upload', [\App\Http\Controllers\UploadController::class, 'upload'])->name('upload.upload');
     Route::post('/file', [\App\Http\Controllers\UploadController::class, 'file']);
     Route::get('/printbm', [\App\Http\Controllers\UploadController::class, 'printbm'])->name('upload.printbm');
-})->middleware('auth');
+});
+
 Route::get('/qc', [\App\Http\Controllers\QrCodeController::class, 'show'])->name('qrcode.show');
