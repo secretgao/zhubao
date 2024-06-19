@@ -20,10 +20,15 @@ class LoginController extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function loginshow(Request $request){
-
+    public function loginshow(){
         return view('login/login');
     }
 
+
+    public function login(Request $request){
+
+
+        var_dump($request->all());
+    }
 
 }

@@ -26,6 +26,7 @@ Route::get('/search/result', [\App\Http\Controllers\HomeController::class, 'sear
 Route::get('/detail/{detail}', [\App\Http\Controllers\HomeController::class, 'detail'])->name('home.detail');
 
 Route::get('/login', [\App\Http\Controllers\LoginController::class, 'loginshow'])->name('login.show');
+Route::post('/login', [\App\Http\Controllers\LoginController::class, 'login'])->name('login.login');
 
 Route::prefix('product')->group(function () {
     Route::get('/index', [\App\Http\Controllers\ProductController::class, 'index'])->name('product.list');

@@ -25,7 +25,7 @@
 
 <div class="login-container">
     <h2>后台登录</h2>
-    <form action="/your-login-processing-url" method="post">
+    <form id="login">
         <div class="input-group">
             <label for="username">用户名</label>
             <input type="text" id="username" name="username" required>
@@ -38,6 +38,34 @@
     </form>
 </div>
 
+<script>
 
+    $('#login').submit(function(e) {
+        e.preventDefault(); // 阻止表单默认提交行为
+        var formData = $(this).serialize(); // 序列化表单数据
+        $.ajax({
+            type: 'POST',
+            url: "{{route('login.login')}}", //URL
+            data: formData,
+            success: function (response) {
+                // 成功提交后的回调函数
+                console.log(response);
+                if (response.status == 200) {
+                    layer.msg('提交成功!', {icon: 100, time: 2000});
+                    window.location.href = "{{route('product.list')}}";
+                } else {
+                    layer.msg('提交失敗：' + response.msg, {icon: 100, time: 2000});
+                }
+            },
+            error: function (xhr) {
+                if (xhr.status === 422) {
+                    let errors = xhr.responseJSON.errors;
+                    alert(errors)
+                    console.log(xhr);
+                }
+            }
+        });
+    })
+    </script>
 </body>
 </html>
