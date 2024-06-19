@@ -36,6 +36,7 @@ Route::prefix('product')->group(function () {
     Route::post('/update', [\App\Http\Controllers\ProductController::class, 'update'])->name('product.update');
     Route::get('/printall', [\App\Http\Controllers\ProductController::class, 'dataprintall'])->name('product.print.all');
     Route::get('/admin', [\App\Http\Controllers\ProductController::class, 'admin'])->name('product.admin');
+    Route::post('/admin/add', [\App\Http\Controllers\ProductController::class, 'adminadd'])->name('product.admin.add');
 
 });
 

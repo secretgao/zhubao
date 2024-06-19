@@ -4,6 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>深信国检珠宝检测鉴定中心</title>
     <link rel="stylesheet" href="{{asset('images/style.css') }}" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <style type="text/css">
@@ -84,6 +85,7 @@
                 <label for="password">再次输入新密码</label>
                 <input type="password" id="password" name="password" required>
             </div>
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <button type="submit" id="closeDropdownBtn1">提交更改</button>
         </form>
     </div>
@@ -92,7 +94,7 @@
 <div class="newuserbox" id="dropdownPage2" style="display:none;">
     <div class="login-container" style="height:360px;">
         <h2>增加新用户</h2>
-        <form action="/your-login-processing-url" method="post">
+        <form id="adduser" >
             <div class="input-group">
                 <label for="username">设置用户名</label>
                 <input type="text" id="username" name="username" required>
@@ -103,16 +105,16 @@
             </div>
             <div class="input-group">
                 <label for="password">再次输入新密码</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="confirm_password" required>
             </div>
             <div class="input-group">
-                <select style="width:120px; height:32px;">
-                    <option value="超级管理员">超级管理员</option>
-                    <option value="普通用户">普通用户</option>
-
+                <select style="width:120px; height:32px;" name="role">
+                    <option value="1">超级管理员</option>
+                    <option value="2">普通用户</option>
                 </select>
             </div>
-            <button type="submit" id="closeDropdownBtn2">提交保存</button>
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <button type="submit">提交保存</button>
         </form>
     </div>
 </div>
@@ -139,10 +141,36 @@
     showButton2.addEventListener('click', function() {
         dropdownPage2.style.display = 'block';
     });
-
+/*
     closeButton2.addEventListener('click', function() {
         dropdownPage2.style.display = 'none';
     });
+*/
+    $('#adduser').submit(function(e) {
+        var dropdownPage2 = document.getElementById('dropdownPage2');
+        e.preventDefault(); // 阻止表单默认提交行为
+        var formData = $(this).serialize(); // 序列化表单数据
+        $.ajax({
+            type: 'POST',
+            url: "{{route('product.admin.add')}}", //URL
+            data: formData,
+            success: function (response) {
+                // 成功提交后的回调函数
+                console.log(response);
+                if (response.status == 200) {
+                    dropdownPage2.style.display = 'none';
+                    layer.msg('提交成功!', {icon: 100, time: 2000});
+                    window.location.href = "{{route('product.admin')}}";
+                } else {
+                    layer.msg('提交失敗：' + response.msg, {icon: 100, time: 2000});
+                }
+            },
+            error: function () {
+                // 提交出错的回调函数
+                alert('表单提交失败!');
+            }
+        });
+    })
 </script>
 
 </body>

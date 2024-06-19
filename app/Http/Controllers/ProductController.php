@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegisterRequest;
 use App\Models\products;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -177,5 +178,15 @@ class ProductController extends Controller
 
         $admins = [];
         return view('product/admin', compact('admins'));
+    }
+
+
+    public function adminadd(RegisterRequest $request){
+
+
+        if ($request->fails()) {
+            return response()->json(['status' =>500,'msg'=> $request->errors()->first()]);
+        }
+
     }
 }
