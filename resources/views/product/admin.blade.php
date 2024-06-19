@@ -165,9 +165,12 @@
                     layer.msg('提交失敗：' + response.msg, {icon: 100, time: 2000});
                 }
             },
-            error: function () {
-                // 提交出错的回调函数
-                alert('表单提交失败!');
+            error: function (xhr) {
+                if (xhr.status === 422) {
+                    let errors = xhr.responseJSON.errors;
+                   alert(errors)
+                   console.log(xhr);
+                }
             }
         });
     })

@@ -11,6 +11,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\JsonResponse;
 class ProductController extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -181,12 +182,28 @@ class ProductController extends Controller
     }
 
 
-    public function adminadd(RegisterRequest $request){
+    public function adminadd(Request $request) : JsonResponse{
 
+        $requestData = request()->all();
+        $validator = Validator::make(
+            $requestData,
+            [
+                'username' => 'required|string|max:255|unique:zhubao_users,username',
+                'password' => 'required|string|min:8|confirmed',
+            ],
+            [
+                'username.required' => '用户名是必填项。',
+                'username.unique' => '用户名已存在。',
+                'password.required' => '密码是必填项。',
+                'password.min' => '密码长度至少为 8 个字符。',
+                'password.confirmed' => '密码确认不匹配。',
+            ]
+        );
 
-        if ($request->fails()) {
-            return response()->json(['status' =>500,'msg'=> $request->errors()->first()]);
+        if ($validator->fails()) {
+            return response()->json(['status' =>500,'msg'=> $validator->errors()->first()]);
         }
+
 
     }
 }
