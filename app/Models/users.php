@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class users extends Model
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+class users extends Authenticatable
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory, Notifiable;
 
 
     public $table = 'zhubao_users';

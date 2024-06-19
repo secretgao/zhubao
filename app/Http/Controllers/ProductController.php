@@ -10,6 +10,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\JsonResponse;
@@ -183,7 +184,6 @@ class ProductController extends Controller
         return view('product/admin', compact('admins'));
     }
 
-
     public function adminadd(Request $request) : JsonResponse{
 
         $requestData = request()->all();
@@ -210,13 +210,12 @@ class ProductController extends Controller
         if ($requestData['password'] != $requestData['password_confirmed']){
             return response()->json(['status' =>500,'msg'=> '两次密码不一致']);
         }
-//password_verify（$request->password,$user->password）
-        try {
 
+        try {
             $result = users::query()->create(
                 [
                     'username'=>$requestData['username'],
-                    'password'=>$requestData['password'],
+                    'password'=>Hash::make($requestData['password']),
                     'remark'=>$requestData['remark'],
                     'role'=>$requestData['role'],
                 ]

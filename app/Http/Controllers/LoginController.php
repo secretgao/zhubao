@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Gregwar\Captcha\CaptchaBuilder;
 use Session;
+use TheSeer\Tokenizer\Exception;
+
 class LoginController extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -50,10 +52,9 @@ class LoginController extends Controller
             return response()->json(['status' =>500,'msg'=> '用户不存在']);
         }
 
-        if ($requestData['password'] != $info->password){
-            return response()->json(['status' =>500,'msg'=> '密码错误']);
-        }
-        if (Auth::attempt($info)){
+        $credentials = $request->only('username', 'password');
+
+        if (Auth::attempt($credentials)){
             return response()->json(['status' =>200,'msg'=> '登录成功']);
         }
         return response()->json(['status' =>500,'msg'=> '登录失败']);

@@ -27,7 +27,12 @@ class Authenticate extends Middleware
             // 用户未登录，重定向到登录页面
             return redirect()->route('login.show');
         }
-
+// 获得当前认证用户．．．
+        $user = Auth::user();
+var_dump($user);
+// 获得当前认证用户的ID．．．
+        $id = Auth::id();
+        var_dump($id);
         return $next($request);
     }
 }
