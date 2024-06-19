@@ -191,13 +191,13 @@ class ProductController extends Controller
             [
                 'username' => 'required|string|max:255|unique:zhubao_users,username',
                 'password' => 'required|string|min:5',
-                'confirmed' => 'required|string',
+                'password_confirmed' => 'required|string',
             ],
             [
                 'username.required' => '用户名是必填项。',
                 'username.unique' => '用户名已存在。',
                 'password.required' => '密码是必填项。',
-                'confirmed.required' => '确认密码是必填项。',
+                'password_confirmed.required' => '确认密码是必填项。',
                 'password.min' => '密码长度至少为 5 个字符。',
             ]
         );
