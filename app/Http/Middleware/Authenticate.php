@@ -28,11 +28,11 @@ class Authenticate extends Middleware
             return redirect()->route('login.show');
         }
 // 获得当前认证用户．．．
-        $user = Auth::user();
-var_dump($user);
+        //$user = Auth::user();
+//var_dump($user);
 // 获得当前认证用户的ID．．．
-        $id = Auth::id();
-        var_dump($id);
+     //   $id = Auth::id();
+      //  var_dump($id);
         return $next($request);
     }
 }
