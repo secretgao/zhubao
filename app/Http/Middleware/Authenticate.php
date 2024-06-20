@@ -32,9 +32,11 @@ class Authenticate extends Middleware
         $methods = $route->methods();
         $action = $route->getAction();
 
-        if (!Auth::check() && $name != 'product.detail') {
+        if (!Auth::check()) {
             // 用户未登录，重定向到登录页面
-            return redirect()->route('login.show');
+            if ($name != 'product.detail'){
+                return redirect()->route('login.show');
+            }
         }
 // 获得当前认证用户．．．
         //$user = Auth::user();
