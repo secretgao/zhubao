@@ -31,14 +31,13 @@ class Authenticate extends Middleware
         $uri = $route->uri();
         $methods = $route->methods();
         $action = $route->getAction();
-
-        if (!Auth::check()) {
-            // 用户未登录，重定向到登录页面
-            var_dump($name);
-            var_dump($name != 'product.detail');
-            if ($name != 'product.detail'){
-                return redirect()->route('login.show');
-            }
+        if ($name != 'product.detail'){
+            if (!Auth::check()) {
+                // 用户未登录，重定向到登录页面
+               // var_dump($name);
+                //var_dump($name != 'product.detail');
+                    return redirect()->route('login.show');
+             }
         }
 // 获得当前认证用户．．．
         //$user = Auth::user();
