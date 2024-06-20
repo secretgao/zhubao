@@ -32,7 +32,7 @@ Route::get('/loginout', [\App\Http\Controllers\LoginController::class, 'loginout
 
 Route::group([
     'prefix' => 'product',
-    'middleware' =>['auth'],
+  //  'middleware' =>['auth'],
 ], function () {
     Route::get('/index', [\App\Http\Controllers\ProductController::class, 'index'])->name('product.list');
     Route::get('/detail/{detail}', [\App\Http\Controllers\ProductController::class, 'detail'])->name('product.detail');
