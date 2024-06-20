@@ -43,6 +43,7 @@ Route::group([
     Route::get('/printall', [\App\Http\Controllers\ProductController::class, 'dataprintall'])->name('product.print.all');
     Route::get('/admin', [\App\Http\Controllers\ProductController::class, 'admin'])->name('product.admin');
     Route::post('/adminadd', [\App\Http\Controllers\ProductController::class, 'adminadd'])->name('product.admin.add');
+    Route::post('/userdel', [\App\Http\Controllers\ProductController::class, 'userdel'])->name('product.admin.delete');
 });
 Route::group([
     'prefix' => 'upload',

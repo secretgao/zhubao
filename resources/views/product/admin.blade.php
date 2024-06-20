@@ -40,13 +40,13 @@
             <td>{{$item->username}}</td>
             <td>密码</td>
             <td>{{$item->remark}}</td>
-            <td>@if ($item->role == 1)
-                    超级管理员
-                @else
-                    普通用户
-                @endif
+            <td>@if ($item->role == 1)  超级管理员  @else 普通用户  @endif </td>
+            <td>
+                <a href="javascript:void(0)" id="showDropdownBtn13" data-url="{{route('product.admin.delete')}}" data-certificate_number="{{$item->id}}">更改密码</a>
+
+                    <a href="javascript:void(0)" class="ajax-link" data-url="{{route('product.admin.delete')}}" data-id="{{$item->id}}">删除</a>
+
             </td>
-            <td><a href="#" id="showDropdownBtn13">更改密码</a></td>
         </tr>
         @endforeach
 
@@ -179,6 +179,38 @@
             }
         });
     })
+
+
+    $('.ajax-link').on('click', function(e) {
+        e.preventDefault(); // 阻止默认行为
+        var url = $(this).data('url'); // 获取 URL
+        var id =  $(this).data('id'); // 获取 URL
+        $.ajax({
+            url: url,
+            method: 'POST', // 或 'POST'，根据你的需求
+            data: {
+                id: id,
+                _token: '{{ csrf_token() }}' // Laravel CSRF 保护
+            },
+            success: function(response) {
+                if (response.status== 200){
+                    // 处理成功响应
+                    layer.msg(response.msg, {icon:100,time:2000});
+                    console.log(response);
+                    location.reload();    // 重新加载当前页面
+                } else {
+                    layer.msg(response.msg, {icon:70,time:2000});
+                }
+            },
+            error: function(xhr) {
+                // 处理错误响应
+                layer.msg('请求失败', {icon: 2});
+                console.log(xhr.responseText);
+            }
+        });
+    });
+
+
 </script>
 
 </body>

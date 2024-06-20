@@ -226,4 +226,17 @@ class ProductController extends Controller
             return response()->json(['status' =>500,'msg'=> $e->getMessage()]);
         }
     }
+
+    public function userdel(Request $request){
+
+        $id = $request->input('id');
+        $info = users::query()->where('id',$id)->first();
+        if (empty($info)){
+            return response()->json(['status'=>500,'msg'=>'数据不存在或参数错误']);
+        }
+        if ($info->delete()){
+            return response()->json(['status'=>200,'msg'=>'刪除成功']);
+        }
+        return response()->json(['status'=>500,'msg'=>'刪除失败']);
+    }
 }
