@@ -31,8 +31,8 @@ class Authenticate extends Middleware
         $uri = $route->uri();
         $methods = $route->methods();
         $action = $route->getAction();
-var_dump($route->uri);exit();
-        if (!Auth::check() && $route->uri != 'product/detail') {
+
+        if (!Auth::check() && $name != 'product.detail') {
             // 用户未登录，重定向到登录页面
             return redirect()->route('login.show');
         }
