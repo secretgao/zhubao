@@ -23,7 +23,16 @@ class Authenticate extends Middleware
     public function handle($request, Closure $next)
     {
        // $response = $next($request);
-        if (!Auth::check()) {
+        $route = $request->route();
+        // 或者使用 $request->route('name') 来获取具名路由的名称
+
+        // 访问路由的各个属性
+        $name = $route->getName();
+        $uri = $route->uri();
+        $methods = $route->methods();
+        $action = $route->getAction();
+
+        if (!Auth::check() && $route->uri != 'product/detail') {
             // 用户未登录，重定向到登录页面
             return redirect()->route('login.show');
         }
