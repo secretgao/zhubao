@@ -42,10 +42,18 @@
             <td>{{$item->remark}}</td>
             <td>@if ($item->role == 1)  超级管理员  @else 普通用户  @endif </td>
             <td>
-                <a href="javascript:void(0)" class="ajax-link-update" data-url="{{route('product.admin.delete')}}" data-certificate_number="{{$item->id}}">更改密码</a>
+                <a
+                    href="javascript:void(0)"
+                    class="ajax-link-update"
+                    onclick="ajaxlinkupdate('{{$item->id}}')"
+                  >更改密码</a>
                 &nbsp;&nbsp;
                 @if ($item->role == 2 && $user->role == 1)
-                    <a href="javascript:void(0)" class="ajax-link-delete" data-url="{{route('product.admin.delete')}}" data-id="{{$item->id}}">删除</a>
+                    <a
+                        href="javascript:void(0)"
+                        class="ajax-link-delete"
+                        data-url="{{route('product.admin.delete')}}"
+                        data-id="{{$item->id}}">删除</a>
                 @else
 
                 @endif
@@ -53,13 +61,6 @@
         </tr>
         @endforeach
 
-        <tr>
-            <td>sunyi</td>
-            <td>sunyi888</td>
-            <td>香苑</td>
-            <td>普通用户</td>
-            <td><a href="#" id="showDropdownBtn1">更改密码</a> &nbsp;&nbsp; <a href="#">删除</a></td>
-        </tr>
     </table>
     <div class="addnew-user"id="showDropdownBtn2">增加新用户</div>
 </div>
@@ -93,7 +94,7 @@
             </div>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <input type="hidden" name="update_password_user_id" value="">
-            <button type="submit"  >提交更改</button>
+            <button type="submit">提交更改</button>
         </form>
     </div>
 </div>
@@ -210,12 +211,12 @@
             }
         });
     })
-    $('.ajax-link-update').on('click', function(e) {
-        var id =  $(this).data('id'); // 获取 URL
-        var dropdownPage1 = document.getElementById('dropdownPage1');
-        dropdownPage1.style.display = 'block';
-         $('#updatepassword input[name="update_password_user_id"]').val(id);
-    });
+
+    function ajaxlinkupdate(id){
+        console.log(id);
+        $('#dropdownPage1').show();
+        $('#updatepassword input[name="update_password_user_id"]').val(id);
+    }
     $('.ajax-link-delete').on('click', function(e) {
         e.preventDefault(); // 阻止默认行为
         var url = $(this).data('url'); // 获取 URL
