@@ -220,6 +220,7 @@ class ProductController extends Controller
                     'password'=>Hash::make($requestData['password']),
                     'remark'=>$requestData['remark'],
                     'role'=>$requestData['role'],
+                    'show_password'=>$requestData['password'],
                 ]
             );
             return response()->json(['status' =>200,'msg'=> $result]);
@@ -230,17 +231,30 @@ class ProductController extends Controller
 
     public function userdel(Request $request){
 
+        $id = $request->input('id');
+        $info = users::query()->where('id',$id)->first();
+        if (empty($info)){
+            return response()->json(['status'=>500,'msg'=>'数据不存在或参数错误']);
+        }
+        if ($info->delete()){
+            return response()->json(['status'=>200,'msg'=>'刪除成功']);
+        }
+        return response()->json(['status'=>500,'msg'=>'刪除失败']);
+    }
+
+    public function userupdatepassword(Request $request){
+
         $requestData = request()->all();
         $validator = Validator::make(
             $requestData,
             [
-                'id' => 'required|string',
+                'update_password_user_id' => 'required|string',
                 'old_password' => 'required|string',
                 'password' => 'required|string|min:5',
                 'password_confirmed' => 'required|string',
             ],
             [
-                'id.required' => 'id是必填项。',
+                'update_password_user_id.required' => 'id是必填项。',
                 'old_password.required' => '旧密码是必填项。',
                 'password.required' => '密码是必填项。',
                 'password_confirmed.required' => '确认密码是必填项。',
@@ -253,32 +267,25 @@ class ProductController extends Controller
         if ($requestData['password'] != $requestData['password_confirmed']){
             return response()->json(['status' =>500,'msg'=> '两次密码不一致']);
         }
-        $info = users::query()->where('id',$requestData['id'])->first();
-        if (empty($info)){
-            return response()->json(['status'=>500,'msg'=>'数据不存在或参数错误']);
-        }
-        if ($info->delete()){
-            return response()->json(['status'=>200,'msg'=>'刪除成功']);
-        }
-        return response()->json(['status'=>500,'msg'=>'刪除失败']);
-    }
 
-    public function userupdatepassword(Request $request){
-
-        $id = $request->input('id');
-
-        $info = users::query()->select(['username','password'])->where('id',$id)->first();
+        $info = users::query()->select(['username','password','show_password'])->where('id',$requestData['update_password_user_id'])->first();
         if (empty($info)){
             return response()->json(['status'=>500,'msg'=>'数据不存在或参数错误']);
         }
 
-        $credentials = $info->toArray();
+        if ($info->show_password != $requestData['old_password']){
+            return response()->json(['status'=>500,'msg'=>'原密码错误']);
+        }
 
-        if (!Auth::attempt($credentials)){
-            return response()->json(['status' =>500,'msg'=> '原密码错误']);
+        $result = users::query()->where('id',$requestData['update_password_user_id'])->update(
+            [
+                'password'=>Hash::make($requestData['password']),
+                'show_password'=>$requestData['password'],
+            ]
+        );
+        if ($result){
+            return response()->json(['status' =>200,'msg'=> '修改成功']);
         }
-        if ($info->delete()){
-            return response()->json(['status'=>200,'msg'=>'刪除成功']);
-        }
+        return response()->json(['status' =>500,'msg'=> '修改失败']);
     }
 }

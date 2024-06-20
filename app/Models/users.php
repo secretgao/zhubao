@@ -18,5 +18,6 @@ class users extends Authenticatable
         'password',
         'role',
         'remark',
+        'show_password',
     ];
 }

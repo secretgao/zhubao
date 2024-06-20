@@ -38,7 +38,7 @@
         @foreach ($admins as $item)
         <tr>
             <td>{{$item->username}}</td>
-            <td>密码</td>
+            <td>{{$item->show_password}}</td>
             <td>{{$item->remark}}</td>
             <td>@if ($item->role == 1)  超级管理员  @else 普通用户  @endif </td>
             <td>
