@@ -62,7 +62,7 @@
         @endforeach
 
     </table>
-    <div class="addnew-user"id="showDropdownBtn2">增加新用户</div>
+    <div class="addnew-user" id="showDropdownBtn2">增加新用户</div>
 </div>
 
 <style type="text/css">
@@ -133,31 +133,10 @@
 
 <script type="text/javascript">
     // 控制第一个弹出框
-    var showButton1 = document.getElementById('showDropdownBtn1'); // 确保此按钮ID存在并正确
-    var dropdownPage1 = document.getElementById('dropdownPage1');
-    var closeButton1 = document.getElementById('closeDropdownBtn1');
-
-    showButton1.addEventListener('click', function() {
-        dropdownPage1.style.display = 'block';
+    $('#showDropdownBtn2').on('click', function(e) {
+        $('#dropdownPage2').show();
     });
 
-    closeButton1.addEventListener('click', function() {
-        dropdownPage1.style.display = 'none';
-    });
-
-    // 控制第二个弹出框
-    var showButton2 = document.getElementById('showDropdownBtn2'); // 确保此按钮ID存在并正确
-    var dropdownPage2 = document.getElementById('dropdownPage2');
-    var closeButton2 = document.getElementById('closeDropdownBtn2');
-
-    showButton2.addEventListener('click', function() {
-        dropdownPage2.style.display = 'block';
-    });
-/*
-    closeButton2.addEventListener('click', function() {
-        dropdownPage2.style.display = 'none';
-    });
-*/
     $('#adduser').submit(function(e) {
         e.preventDefault(); // 阻止表单默认提交行为
         var formData = $(this).serialize(); // 序列化表单数据
@@ -186,35 +165,6 @@
     })
 
     $('#updatepassword').submit(function(e) {
-
-        console.log('11111');
-        e.preventDefault(); // 阻止表单默认提交行为
-        var formData = $(this).serialize(); // 序列化表单数据
-        $.ajax({
-            type: 'POST',
-            url: "{{route('product.admin.add')}}", //URL
-            data: formData,
-            success: function (response) {
-                // 成功提交后的回调函数
-                console.log(response);
-                if (response.status == 200) {
-                    layer.msg('提交成功!', {icon: 100, time: 2000});
-                    window.location.href = "{{route('product.admin')}}";
-                } else {
-                    layer.msg('提交失敗：' + response.msg, {icon: 100, time: 2000});
-                }
-            },
-            error: function (xhr) {
-                if (xhr.status === 422) {
-                    let errors = xhr.responseJSON.errors;
-                    alert(errors)
-                    console.log(xhr);
-                }
-            }
-        });
-    })
-    function updatepassword(){
-        console.log('11111111');
         e.preventDefault(); // 阻止表单默认提交行为
         var formData = $(this).serialize(); // 序列化表单数据
         $.ajax({
@@ -239,7 +189,7 @@
                 }
             }
         });
-    }
+    })
 
     function ajaxlinkupdate(id){
         console.log(id);

@@ -266,7 +266,7 @@ class ProductController extends Controller
     public function userupdatepassword(Request $request){
 
         $id = $request->input('id');
-        $
+
         $info = users::query()->select(['username','password'])->where('id',$id)->first();
         if (empty($info)){
             return response()->json(['status'=>500,'msg'=>'数据不存在或参数错误']);
