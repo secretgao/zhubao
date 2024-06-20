@@ -19,6 +19,7 @@
             <a href="{{route('product.admin')}}" >用户账号管理</a>
         @else
         @endif
+        <a href="{{route('login.out')}}">退出登陆</a >
     </div>
 </div>
 <form id="uploadForm">

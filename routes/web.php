@@ -27,6 +27,7 @@ Route::get('/detail/{detail}', [\App\Http\Controllers\HomeController::class, 'de
 
 Route::get('/login', [\App\Http\Controllers\LoginController::class, 'loginshow'])->name('login.show');
 Route::post('/login', [\App\Http\Controllers\LoginController::class, 'login'])->name('login.login');
+Route::get('/loginout', [\App\Http\Controllers\LoginController::class, 'loginout'])->name('login.out');
 
 
 Route::group([

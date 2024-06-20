@@ -59,4 +59,9 @@ class LoginController extends Controller
         return response()->json(['status' =>500,'msg'=> '登录失败']);
     }
 
+    public function loginout(){
+        Auth::logout(); // 登出用户
+
+        return redirect()->route('login.show');
+    }
 }

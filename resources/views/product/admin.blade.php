@@ -23,6 +23,7 @@
         <a href="{{route("product.list")}}" >管理证书</a>
         <a href="{{route('upload.printbm')}}" target="_blank" >打印证书背面</a>
         <a href="{{route('product.admin')}}" style="background:#900;">用户账号管理</a>
+        <a href="{{route('login.out')}}">退出登陆</a >
     </div>
 </div>
 
