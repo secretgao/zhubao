@@ -79,7 +79,7 @@
 <div class="passwordbox" id="dropdownPage1" style="display:none;">
     <div class="login-container">
         <h2>修改密码</h2>
-        <form  id="updatepassword"  method="POST">
+        <form  id="updatepassword">
             <div class="input-group">
                 <label for="username">旧密码</label>
                 <input type="text" id="username" name="old_password" required>
@@ -186,6 +186,35 @@
     })
 
     $('#updatepassword').submit(function(e) {
+
+        console.log('11111');
+        e.preventDefault(); // 阻止表单默认提交行为
+        var formData = $(this).serialize(); // 序列化表单数据
+        $.ajax({
+            type: 'POST',
+            url: "{{route('product.admin.add')}}", //URL
+            data: formData,
+            success: function (response) {
+                // 成功提交后的回调函数
+                console.log(response);
+                if (response.status == 200) {
+                    layer.msg('提交成功!', {icon: 100, time: 2000});
+                    window.location.href = "{{route('product.admin')}}";
+                } else {
+                    layer.msg('提交失敗：' + response.msg, {icon: 100, time: 2000});
+                }
+            },
+            error: function (xhr) {
+                if (xhr.status === 422) {
+                    let errors = xhr.responseJSON.errors;
+                    alert(errors)
+                    console.log(xhr);
+                }
+            }
+        });
+    })
+    function updatepassword(){
+        console.log('11111111');
         e.preventDefault(); // 阻止表单默认提交行为
         var formData = $(this).serialize(); // 序列化表单数据
         $.ajax({
@@ -210,7 +239,7 @@
                 }
             }
         });
-    })
+    }
 
     function ajaxlinkupdate(id){
         console.log(id);
