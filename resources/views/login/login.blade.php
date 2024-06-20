@@ -52,7 +52,7 @@
                 // 成功提交后的回调函数
                 console.log(response);
                 if (response.status == 200) {
-                    layer.msg('提交成功!', {icon: 100, time: 2000});
+                    layer.msg('登录成功!', {icon: 100, time: 2000});
                     window.location.href = "{{route('product.list')}}";
                 } else {
                     layer.msg('提交失敗：' + response.msg, {icon: 100, time: 2000});
