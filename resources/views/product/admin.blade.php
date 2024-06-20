@@ -42,10 +42,13 @@
             <td>{{$item->remark}}</td>
             <td>@if ($item->role == 1)  超级管理员  @else 普通用户  @endif </td>
             <td>
-                <a href="javascript:void(0)" id="showDropdownBtn13" data-url="{{route('product.admin.delete')}}" data-certificate_number="{{$item->id}}">更改密码</a>
+                <a href="javascript:void(0)" class="ajax-link-update" data-url="{{route('product.admin.delete')}}" data-certificate_number="{{$item->id}}">更改密码</a>
+                &nbsp;&nbsp;
+                @if ($item->role == 2 && $user->role == 1)
+                    <a href="javascript:void(0)" class="ajax-link-delete" data-url="{{route('product.admin.delete')}}" data-id="{{$item->id}}">删除</a>
+                @else
 
-                    <a href="javascript:void(0)" class="ajax-link" data-url="{{route('product.admin.delete')}}" data-id="{{$item->id}}">删除</a>
-
+                @endif
             </td>
         </tr>
         @endforeach
@@ -75,10 +78,10 @@
 <div class="passwordbox" id="dropdownPage1" style="display:none;">
     <div class="login-container">
         <h2>修改密码</h2>
-        <form action="/your-login-processing-url" method="post">
+        <form  id="updatepassword">
             <div class="input-group">
                 <label for="username">旧密码</label>
-                <input type="text" id="username" name="username" required>
+                <input type="text" id="username" name="old_password" required>
             </div>
             <div class="input-group">
                 <label for="password">新密码</label>
@@ -86,10 +89,11 @@
             </div>
             <div class="input-group">
                 <label for="password">再次输入新密码</label>
-                <input type="password" id="password" name="confirmed" required>
+                <input type="password" id="password" name="password_confirmed" required>
             </div>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <button type="submit" id="closeDropdownBtn1">提交更改</button>
+            <input type="hidden" name="update_password_user_id" value="">
+            <button type="submit"  >提交更改</button>
         </form>
     </div>
 </div>
@@ -180,8 +184,39 @@
         });
     })
 
-
-    $('.ajax-link').on('click', function(e) {
+    $('#updatepassword').submit(function(e) {
+        e.preventDefault(); // 阻止表单默认提交行为
+        var formData = $(this).serialize(); // 序列化表单数据
+        $.ajax({
+            type: 'POST',
+            url: "{{route('product.admin.updatepassword')}}", //URL
+            data: formData,
+            success: function (response) {
+                // 成功提交后的回调函数
+                console.log(response);
+                if (response.status == 200) {
+                    layer.msg('提交成功!', {icon: 100, time: 2000});
+                    window.location.href = "{{route('product.admin')}}";
+                } else {
+                    layer.msg('提交失敗：' + response.msg, {icon: 100, time: 2000});
+                }
+            },
+            error: function (xhr) {
+                if (xhr.status === 422) {
+                    let errors = xhr.responseJSON.errors;
+                    alert(errors)
+                    console.log(xhr);
+                }
+            }
+        });
+    })
+    $('.ajax-link-update').on('click', function(e) {
+        var id =  $(this).data('id'); // 获取 URL
+        var dropdownPage1 = document.getElementById('dropdownPage1');
+        dropdownPage1.style.display = 'block';
+         $('#updatepassword input[name="update_password_user_id"]').val(id);
+    });
+    $('.ajax-link-delete').on('click', function(e) {
         e.preventDefault(); // 阻止默认行为
         var url = $(this).data('url'); // 获取 URL
         var id =  $(this).data('id'); // 获取 URL

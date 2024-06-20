@@ -44,6 +44,7 @@ Route::group([
     Route::get('/admin', [\App\Http\Controllers\ProductController::class, 'admin'])->name('product.admin');
     Route::post('/adminadd', [\App\Http\Controllers\ProductController::class, 'adminadd'])->name('product.admin.add');
     Route::post('/userdel', [\App\Http\Controllers\ProductController::class, 'userdel'])->name('product.admin.delete');
+    Route::post('/userupdatepassword', [\App\Http\Controllers\ProductController::class, 'userupdatepassword'])->name('product.admin.updatepassword');
 });
 Route::group([
     'prefix' => 'upload',
