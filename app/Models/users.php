@@ -11,7 +11,6 @@ class users extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-
     public $table = 'zhubao_users';
     public $fillable = [
         'username',

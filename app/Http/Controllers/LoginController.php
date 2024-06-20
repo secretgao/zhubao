@@ -30,7 +30,6 @@ class LoginController extends Controller
 
 
     public function login(Request $request){
-
         $requestData = request()->all();
         $validator = Validator::make(
             $requestData,
