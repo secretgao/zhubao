@@ -79,7 +79,7 @@
 <div class="passwordbox" id="dropdownPage1" style="display:none;">
     <div class="login-container">
         <h2>修改密码</h2>
-        <form  id="updatepassword">
+        <form  id="updatepassword"  method="POST">
             <div class="input-group">
                 <label for="username">旧密码</label>
                 <input type="text" id="username" name="old_password" required>
