@@ -56,6 +56,7 @@
                     window.location.href = "{{route('product.list')}}";
                 } else {
                     layer.msg('提交失敗：' + response.msg, {icon: 100, time: 2000});
+                    location.reload(true);
                 }
             },
             error: function (xhr) {

@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -32,7 +33,8 @@ class UploadController extends Controller
         $path =storage_path("app/public/{$filename}");
         QrCode::format('png')->size(200)->generate($url, $path);
         $qcurl = Storage::url($filename);
-        return view('upload/index', compact('certificateNumber','queryCode','qcurl'));
+        $user = Auth::user();
+        return view('upload/index', compact('certificateNumber','queryCode','qcurl','user'));
     }
 
 

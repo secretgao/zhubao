@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\RegisterRequest;
+use Illuminate\Support\Facades\Auth;
 use App\Models\products;
 use App\Models\users;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -28,7 +28,8 @@ class ProductController extends Controller
         }
         $query->orderby('id','desc');
         $products = $query->paginate(20);
-        return view('product/index', compact('products'));
+        $user = Auth::user();
+        return view('product/index', compact('products','user'));
     }
 
 
