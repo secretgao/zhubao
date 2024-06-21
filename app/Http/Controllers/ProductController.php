@@ -34,6 +34,7 @@ class ProductController extends Controller
         $query->orderby('id','desc');
         $products = $query->paginate(20);
         $user = Auth::user();
+
         $cate = cate::getcate();
         return view('product/index', compact('products','user','cate'));
     }

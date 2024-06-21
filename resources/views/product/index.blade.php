@@ -25,7 +25,6 @@
 </div>
 
 <div class="zsmbadmin-list">
-
     <div class="ser">
         <form method="get" action="{{route('product.list')}}">
         <input class="sertxt" name="certificate_number" type="text" />
