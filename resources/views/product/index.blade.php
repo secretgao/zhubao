@@ -42,10 +42,10 @@
 
     <table width="100%" border="0">
         <tr class="row">
-            <td width="9%" align="center" valign="middle">选择</td>
-            <td width="23%" align="center" valign="middle">标识备注</td>
-            <td width="23%" align="center" valign="middle">证书编号</td>
-            <td width="23%" align="center" valign="middle">查询编号</td>
+            <td width="5%" align="center" valign="middle">选择</td>
+            <td width="25%" align="center" valign="middle">标识备注</td>
+            <td width="15%" align="center" valign="middle">证书编号</td>
+            <td width="15%" align="center" valign="middle">查询编号</td>
             <td width="19%" align="center" valign="middle">上传日期</td>
             <td width="26%" align="center" valign="middle">操作</td>
         </tr>
