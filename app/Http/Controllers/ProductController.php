@@ -32,7 +32,7 @@ class ProductController extends Controller
             $query->where('cate_id',$cate_id);
         }
         $query->orderby('id','desc');
-        $products = $query->paginate(20);
+        $products = $query->paginate(200);
         $user = Auth::user();
 
         $cate = cate::getcate();
