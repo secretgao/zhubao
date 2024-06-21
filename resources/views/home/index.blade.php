@@ -183,21 +183,7 @@
                                 <td height="31" style="padding: 4px"><span class="zs" style=" line-height:30px;"><b>&nbsp;<a name="query_code"></a>查询编码：</b></span>
                                     <input type="text" id="txtNo" name="query_code" style="padding: 2px" size="25" />
                                     <br /></td>
-                            </tr>
-                            <!--
-                            <tr>
-                                <td height="31" ><span class="zs" style=" line-height:30px;"><b>&nbsp;<a name="verify_code"></a></b></span>
-                                    <input type="text" id="txtNo" name="verify_code" style="padding: 2px" size="4" value="验证码" onfocus="clearDefault(this)"/>
-                                    <img src="{{ url('captcha') }}"  onclick="this.src='{{ url('captcha') }}?'+Math.random()" style=" width:120px; height:40px;"/>
-
-                                    <script type="text/javascript">
-function clearDefault(input) {
-    if (input.value === "验证码") {
-        input.value = "";
-    }
-}
-</script></td>
-                            </tr> -->
+                            </tr>                            
                             <tr>
                                 <td height="36" style="padding: 4px">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
