@@ -19,6 +19,17 @@
             <input name="remark" type="text" value="{{$info->remark}}"  />
         </div>
         <div class="t1">
+            证书分类： <select name="cate_id">
+                <option value="0">请选择</option>
+                @foreach ($cate as $k=>$item)
+                    <option value=" {{$k}}"
+                            @if ($info->cate_id ==  $k)
+                                selected="selected"
+                            @endif  >{{$item}}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="t1">
             {{$info->certificate_number}}
             <input name="certificate_number" type="hidden" value="{{$info->certificate_number}}"  />
         </div>

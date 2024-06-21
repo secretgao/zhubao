@@ -18,10 +18,11 @@
         <a href="{{route('upload.printbm')}}" target="_blank" >打印证书背面</a>
         @if ($user->role == 1)
         <a href="{{route('product.admin')}}" >用户账号管理</a>
-        <a href="{{route('cate.list')}}">分类管理</a>
+
         @else
         @endif
-        <a href="{{route('login.out')}}">退出登陆</a >
+        <a href="{{route('cate.list')}}">分类管理</a>
+        <a href="{{route('login.out')}}">退出登陆</a>
     </div>
 </div>
 
