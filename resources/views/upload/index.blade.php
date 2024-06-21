@@ -23,7 +23,8 @@
     </div>
 </div>
 <form id="uploadForm">
-<div class="zsmbadmin">
+    <div class="t1">证书标识备注： <input name="remark" type="text" value=" "  /></div>
+    <div class="zsmbadmin">
 
     <div class="zsmbadmin-box">
 

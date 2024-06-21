@@ -136,6 +136,7 @@ class ProductController extends Controller
                 'detection'=>'required',
                 'detection_1'=>'required',
                 'image_path'=>'required',
+                'remark' =>'nullable',
               //  'qc_content'=>'required',
             ],
             [

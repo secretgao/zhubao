@@ -54,6 +54,7 @@ class UploadController extends Controller
                 'detection_1'=>'required',
                 'image_path'=>'required',
                 'qc_content'=>'required',
+                'remark'=>'nullable',
             ],
             [
                 'certificate_number.required' => '证书编号:[:attribute]必传',

@@ -22,5 +22,6 @@ class products extends Model
         'detection_1',
         'image_path',
         'qc_content',
+        'remark',
     ];
 }

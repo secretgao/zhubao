@@ -14,7 +14,10 @@
 <div class="zsmbadmin">
 
     <div class="zsmbadmin-box">
-
+        <div class="t1">
+            标识备注
+            <input name="remark" type="text" value="{{$info->remark}}"  />
+        </div>
         <div class="t1">
             {{$info->certificate_number}}
             <input name="certificate_number" type="hidden" value="{{$info->certificate_number}}"  />
@@ -36,7 +39,7 @@
             <img src="{{$info->qc_content}}">
         </div>
 
-        <input type="hidden" id="imagePath" name="image_path">
+        <input type="hidden" id="imagePath" name="image_path" value="{{$info->image_path}}">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
     </div>
 

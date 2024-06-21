@@ -13,3 +13,7 @@ app/Http/Controllers/LoginController.php   |  63 +++++++++++
  resources/views/product/index.blade.php    |   3 +
  resources/views/upload/index.blade.php     |   5 +-
  routes/web.php                             |  21 ++--
+
+
+ALTER TABLE `zhubao_products`
+ADD COLUMN `remark` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL;

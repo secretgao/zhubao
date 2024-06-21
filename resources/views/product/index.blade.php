@@ -27,7 +27,7 @@
 <div class="zsmbadmin-list">
 
     <div class="ser">
-        <form method="get" action="/product/index">
+        <form method="get" action="{{route('product.list')}}">
         <input class="sertxt" name="certificate_number" type="text" />
         <button class="serbut"  type="submit" >搜索证书</button>
         </form>
@@ -36,6 +36,7 @@
     <table width="100%" border="0">
         <tr class="row">
             <td width="9%" align="center" valign="middle">选择</td>
+            <td width="23%" align="center" valign="middle">标识备注</td>
             <td width="23%" align="center" valign="middle">证书编号</td>
             <td width="23%" align="center" valign="middle">查询编号</td>
             <td width="19%" align="center" valign="middle">上传日期</td>
@@ -48,6 +49,7 @@
             <td align="center" valign="middle">
                 <input name="certificate_number[]" type="checkbox" class="item-checkbox"  value="{{$product->certificate_number}}" />
             </td>
+            <td align="center" valign="middle">{{$product->remark}}</td>
             <td align="center" valign="middle">{{$product->certificate_number}}</td>
             <td align="center" valign="middle">{{$product->query_code}}</td>
             <td align="center" valign="middle">{{$product->created_at}}</td>
