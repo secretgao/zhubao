@@ -23,7 +23,17 @@
     </div>
 </div>
 <form id="uploadForm">
-    <div class="t1">证书标识备注： <input name="remark" type="text" value=" "  /></div>
+    <div class="t1">
+        证书标识备注： <input name="remark" type="text" value=" "  />
+    </div>
+    <div class="t1">
+        证书分类： <select name="cate_id">
+            <option value="0">请选择</option>
+            @foreach ($cate as $k=>$item)
+                <option value="{{$k}}">{{$item}}</option>
+            @endforeach
+        </select>
+    </div>
     <div class="zsmbadmin">
 
     <div class="zsmbadmin-box">

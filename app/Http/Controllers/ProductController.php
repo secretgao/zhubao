@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\cate;
 use Illuminate\Support\Facades\Auth;
 use App\Models\products;
 use App\Models\users;
@@ -20,16 +21,21 @@ class ProductController extends Controller
 
     public function index(Request $request){
 
-        $search = $request->input('certificate_number');
+        $certificate_number = $request->input('certificate_number');
+        $cate_id = $request->input('cate_id');
         $query = products::query();
 
-        if ($search){
-            $query->where('certificate_number',$search);
+        if ($certificate_number){
+            $query->where('certificate_number',$certificate_number);
+        }
+        if ($cate_id){
+            $query->where('cate_id',$cate_id);
         }
         $query->orderby('id','desc');
         $products = $query->paginate(20);
         $user = Auth::user();
-        return view('product/index', compact('products','user'));
+        $cate = cate::getcate();
+        return view('product/index', compact('products','user','cate'));
     }
 
 

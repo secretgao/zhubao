@@ -29,6 +29,12 @@
     <div class="ser">
         <form method="get" action="{{route('product.list')}}">
         <input class="sertxt" name="certificate_number" type="text" />
+            证书分类： <select name="cate_id">
+                <option value="0">请选择</option>
+                @foreach ($cate as $k=>$item)
+                    <option value="{{$k}}">{{$item}}</option>
+                @endforeach
+            </select>
         <button class="serbut"  type="submit" >搜索证书</button>
         </form>
     </div>

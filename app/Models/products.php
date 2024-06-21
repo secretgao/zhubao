@@ -23,5 +23,6 @@ class products extends Model
         'image_path',
         'qc_content',
         'remark',
+        'cate_id'
     ];
 }

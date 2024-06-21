@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\cate;
 use App\Models\products;
 use App\Utils\CommonUtil;
 use Illuminate\Http\Request;
@@ -34,7 +35,8 @@ class UploadController extends Controller
         QrCode::format('png')->size(200)->generate($url, $path);
         $qcurl = Storage::url($filename);
         $user = Auth::user();
-        return view('upload/index', compact('certificateNumber','queryCode','qcurl','user'));
+        $cate = cate::getcate();
+        return view('upload/index', compact('certificateNumber','queryCode','qcurl','user','cate'));
     }
 
 
@@ -55,6 +57,7 @@ class UploadController extends Controller
                 'image_path'=>'required',
                 'qc_content'=>'required',
                 'remark'=>'nullable',
+                'cate_id'=>'nullable'
             ],
             [
                 'certificate_number.required' => '证书编号:[:attribute]必传',

@@ -7,3 +7,5 @@
 
 ALTER TABLE `zhubao_products`
 ADD COLUMN `remark` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL;
+ALTER TABLE `zhubao_products`
+ADD COLUMN `cate_id` int(11)   DEFAULT 0;
