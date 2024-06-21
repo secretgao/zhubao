@@ -65,7 +65,7 @@
 
 <div class="passwordbox" id="dropdownPage1" style="display:none;">
     <div class="login-container">
-        <h2>修改密码</h2>
+        <h2>修改</h2>
         <form  id="updatepassword">
             <div class="input-group">
                 <label for="username">修改分类</label>
@@ -110,7 +110,7 @@
                 console.log(response);
                 if (response.status == 200) {
                     layer.msg('提交成功!', {icon: 100, time: 2000});
-                    window.location.href = "{{route('product.admin')}}";
+                    window.location.href = "{{route('cate.list')}}";
                 } else {
                     layer.msg('提交失敗：' + response.msg, {icon: 100, time: 2000});
                 }
@@ -137,7 +137,7 @@
                 console.log(response);
                 if (response.status == 200) {
                     layer.msg('提交成功!', {icon: 100, time: 2000});
-                    window.location.href = "{{route('product.admin')}}";
+                    window.location.href = "{{route('cate.list')}}";
                 } else {
                     layer.msg('提交失敗：' + response.msg, {icon: 100, time: 2000});
                 }
@@ -155,7 +155,7 @@
     function ajaxlinkupdate(id){
         console.log(id);
         $('#dropdownPage1').show();
-        $('#updatepassword input[name="update_password_user_id"]').val(id);
+        $('#updatepassword input[name="cate_id"]').val(id);
     }
     $('.ajax-link-delete').on('click', function(e) {
         e.preventDefault(); // 阻止默认行为

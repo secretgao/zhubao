@@ -21,22 +21,11 @@ class cateController extends Controller
 
     public function index(Request $request){
 
-        $certificate_number = $request->input('certificate_number');
-        $cate_id = $request->input('cate_id');
         $query = cate::query();
-
         $query->orderby('id','desc');
         $cate = $query->paginate(20);
         $user = Auth::user();
         return view('cate/index', compact('cate','user'));
-    }
-
-    public function admin(){
-
-        $query = users::query();
-        $admins = $query->paginate(20);
-        $user = Auth::user();
-        return view('product/admin', compact('admins','user'));
     }
 
     public function cateadd(Request $request) : JsonResponse{
@@ -45,7 +34,7 @@ class cateController extends Controller
         $validator = Validator::make(
             $requestData,
             [
-                'name' => 'required|string|max:255|unique:cate,name',
+                'name' => 'required|string|max:255|unique:zhubao_cate,name',
             ],
             [
                 'name.required' => '分类是必填项。',
@@ -87,8 +76,7 @@ class cateController extends Controller
             return response()->json(['status' =>500,'msg'=> $validator->errors()->first()]);
         }
 
-
-        $info = cate::query()->select(['username','password','show_password'])->where('id',$requestData['update_password_user_id'])->first();
+        $info = cate::query()->where('id',$requestData['cate_id'])->first();
         if (empty($info)){
             return response()->json(['status'=>500,'msg'=>'数据不存在或参数错误']);
         }
