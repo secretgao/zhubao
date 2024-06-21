@@ -47,6 +47,16 @@ Route::group([
     Route::post('/userdel', [\App\Http\Controllers\ProductController::class, 'userdel'])->name('product.admin.delete');
     Route::post('/userupdatepassword', [\App\Http\Controllers\ProductController::class, 'userupdatepassword'])->name('product.admin.updatepassword');
 });
+
+Route::group([
+    'prefix' => 'cate',
+    'middleware' =>['auth'],
+], function () {
+    Route::get('/index', [\App\Http\Controllers\CateController::class, 'index'])->name('cate.list');
+    Route::post('/update', [\App\Http\Controllers\CateController::class, 'cateupdate'])->name('cate.update');
+    Route::post('/add', [\App\Http\Controllers\CateController::class, 'cateadd'])->name('cate.add');
+
+});
 Route::group([
     'prefix' => 'upload',
     'middleware' =>['auth'],

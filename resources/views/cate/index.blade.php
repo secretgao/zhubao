@@ -22,8 +22,8 @@
         <a href="{{route("upload.index")}}">上传证书</a>
         <a href="{{route("product.list")}}" >管理证书</a>
         <a href="{{route('upload.printbm')}}" target="_blank" >打印证书背面</a>
-        <a href="{{route('product.admin')}}" style="background:#900;">用户账号管理</a>
-        <a href="{{route('cate.list')}}">分类管理</a>
+        <a href="{{route('product.admin')}}" >用户账号管理</a>
+        <a href="{{route('cate.list')}}" style="background:#900;">分类管理</a>
         <a href="{{route('login.out')}}">退出登陆</a >
     </div>
 </div>
@@ -31,38 +31,25 @@
 <div class="admin-userbox">
     <table>
         <tr>
-            <td width="207"><strong>用户名</strong></td>
-            <td width="207"><strong>密码</strong></td>
-            <td width="123"><strong>级别</strong></td>
+            <td width="207"><strong>分类名称</strong></td>
             <td width="211"><strong>操作</strong></td>
         </tr>
-        @foreach ($admins as $item)
-        <tr>
-            <td>{{$item->username}}</td>
-            <td>{{$item->show_password}}</td>
-            <td>@if ($item->role == 1)  超级管理员  @else 普通用户  @endif </td>
-            <td>
-                <a
-                    href="javascript:void(0)"
-                    class="ajax-link-update"
-                    onclick="ajaxlinkupdate('{{$item->id}}')"
-                  >更改密码</a>
-                &nbsp;&nbsp;
-                @if ($item->role == 2 && $user->role == 1)
+        @foreach ($cate as $item)
+            <tr>
+                <td>{{$item->name}}</td>
+                <td>
                     <a
                         href="javascript:void(0)"
-                        class="ajax-link-delete"
-                        data-url="{{route('product.admin.delete')}}"
-                        data-id="{{$item->id}}">删除</a>
-                @else
+                        class="ajax-link-update"
+                        onclick="ajaxlinkupdate('{{$item->id}}')"
+                    >更改</a>
 
-                @endif
-            </td>
-        </tr>
+                </td>
+            </tr>
         @endforeach
 
     </table>
-    <div class="addnew-user" id="showDropdownBtn2">增加新用户</div>
+    <div class="addnew-user" id="showDropdownBtn2">增加新分类</div>
 </div>
 
 <style type="text/css">
@@ -81,19 +68,11 @@
         <h2>修改密码</h2>
         <form  id="updatepassword">
             <div class="input-group">
-                <label for="username">旧密码</label>
-                <input type="text" id="username" name="old_password" required>
-            </div>
-            <div class="input-group">
-                <label for="password">新密码</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div class="input-group">
-                <label for="password">再次输入新密码</label>
-                <input type="password" id="password" name="password_confirmed" required>
+                <label for="username">修改分类</label>
+                <input type="text" id="username" name="name" required>
             </div>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <input type="hidden" name="update_password_user_id" value="">
+            <input type="hidden" name="cate_id" value="">
             <button type="submit">提交更改</button>
         </form>
     </div>
@@ -101,29 +80,11 @@
 
 <div class="newuserbox" id="dropdownPage2" style="display:none;">
     <div class="login-container" style="height:360px;">
-        <h2>增加新用户</h2>
+        <h2>增加新分类</h2>
         <form id="adduser" >
             <div class="input-group">
-                <label for="username">设置用户名</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="input-group">
-                <label for="password">设置密码</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div class="input-group">
-                <label for="password">再次输入新密码</label>
-                <input type="password" id="password" name="password_confirmed" required>
-            </div>
-            <div class="input-group">
-                <label for="remark">备注</label>
-                <input type="text" id="remark" name="remark" >
-            </div>
-            <div class="input-group">
-                <select style="width:120px; height:32px;" name="role">
-                    <option value="1">超级管理员</option>
-                    <option value="2">普通用户</option>
-                </select>
+                <label for="username">设置分类名</label>
+                <input type="text" id="username" name="name" required>
             </div>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <button type="submit">提交保存</button>
@@ -142,7 +103,7 @@
         var formData = $(this).serialize(); // 序列化表单数据
         $.ajax({
             type: 'POST',
-            url: "{{route('product.admin.add')}}", //URL
+            url: "{{route('cate.add')}}", //URL
             data: formData,
             success: function (response) {
                 // 成功提交后的回调函数
@@ -157,8 +118,8 @@
             error: function (xhr) {
                 if (xhr.status === 422) {
                     let errors = xhr.responseJSON.errors;
-                   alert(errors)
-                   console.log(xhr);
+                    alert(errors)
+                    console.log(xhr);
                 }
             }
         });
@@ -169,7 +130,7 @@
         var formData = $(this).serialize(); // 序列化表单数据
         $.ajax({
             type: 'POST',
-            url: "{{route('product.admin.updatepassword')}}", //URL
+            url: "{{route('cate.update')}}", //URL
             data: formData,
             success: function (response) {
                 // 成功提交后的回调函数
