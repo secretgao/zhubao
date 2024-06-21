@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>深信国检珠宝检测鉴定中心</title>    
+    <title>深信国检珠宝检测鉴定中心</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="{{asset('images/layui/css/layui.css')}}">
     <link rel="stylesheet" href="{{asset('images/style.css') }}" type="text/css">
@@ -32,7 +32,6 @@
         <tr>
             <td width="207"><strong>用户名</strong></td>
             <td width="207"><strong>密码</strong></td>
-            <td width="203"><strong>备注</strong></td>
             <td width="123"><strong>级别</strong></td>
             <td width="211"><strong>操作</strong></td>
         </tr>
@@ -40,7 +39,6 @@
         <tr>
             <td>{{$item->username}}</td>
             <td>{{$item->show_password}}</td>
-            <td>{{$item->remark}}</td>
             <td>@if ($item->role == 1)  超级管理员  @else 普通用户  @endif </td>
             <td>
                 <a
