@@ -165,7 +165,6 @@ class ProductController extends Controller
         }
         try {
             unset($requestData['_token']);
-            var_dump($requestData);
             $result = products::query()->where('certificate_number',$requestData['certificate_number'])->update($requestData);
             return response()->json(['status' =>200,'msg'=> $result]);
         } catch (QueryException $e) {
