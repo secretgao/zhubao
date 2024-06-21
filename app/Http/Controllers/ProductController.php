@@ -126,7 +126,8 @@ class ProductController extends Controller
             return redirect()->route('product.list')->with('detail', '数据未找到');
         }
         $imagePath = Storage::url($info->image_path);
-        return view('product/edit', compact('info','imagePath'));
+        $cate = cate::getcate();
+        return view('product/edit', compact('info','imagePath','cate'));
     }
 
     public function update(Request $request){
