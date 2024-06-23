@@ -19,8 +19,8 @@ class CommonUtil
      * 生成证书编号
      */
     public static function generateCertificateNumber(){
-        $start = 'S02008';
-        $total = products::max('id') +1;
+        $start = 'S0';
+        $total = 2008 + products::max('id');
         return $start.$total;
     }
 
@@ -29,8 +29,8 @@ class CommonUtil
      * 生成查询编码
      */
     public static function generateQueryCode(){
-        $start = 'A0100';
-        $total =  products::max('id') + 2;
+        $start = 'A0';
+        $total =  100 + products::max('id');
         return $start.$total;
     }
 
